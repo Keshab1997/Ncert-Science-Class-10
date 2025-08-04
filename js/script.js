@@ -1,4 +1,4 @@
-// Filename: js/script.js - Upgraded for Main Homepage and Chapter Pages
+// Filename: js/script.js - Final Upgraded Version for Homepage and Chapters
 
 document.addEventListener('DOMContentLoaded', () => {
     // Firebase Authentication Check
@@ -29,7 +29,7 @@ function initApp(user) {
     if (typeof CURRENT_CHAPTER_NAME === 'undefined') {
         console.error("অধ্যায়ের নাম (CURRENT_CHAPTER_NAME) HTML ফাইলে সেট করা হয়নি।");
         alert("ত্রুটি: অধ্যায়ের নাম পাওয়া যায়নি।");
-        return; // Stop execution if chapter name is missing
+        return;
     }
     const chapterName = CURRENT_CHAPTER_NAME;
     const chapterKey = chapterName.replace(/\s+/g, '_').replace(/,/g, ''); // Firestore-এর জন্য নিরাপদ কী
@@ -39,15 +39,14 @@ function initApp(user) {
     setupUIInteractions();
     
     // --- Firebase থেকে ডেটা লোড ---
-    // হোমপেজ এবং অধ্যায় পেজের জন্য আলাদাভাবে ফাংশন কল করা হচ্ছে
     const isHomePage = (chapterKey === "NCERT_SCIENCE_CLASS_10");
 
     if (isHomePage) {
-        loadMainLeaderboard(db); // হোমপেজের জন্য সামগ্রিক লিডারবোর্ড
-        loadDashboardData(db, user.uid, chapterKey, true); // হোমপেজের জন্য সামগ্রিক ড্যাশবোর্ড
+        loadMainLeaderboard(db); // হোমপেজের জন্য ফিল্টার করা লিডারবোর্ড
+        loadDashboardData(db, user.uid, true); // হোমপেজের জন্য ফিল্টার করা ড্যাশবোর্ড
     } else {
         loadChapterLeaderboard(db, chapterKey); // অধ্যায়-ভিত্তিক লিডারবোর্ড
-        loadDashboardData(db, user.uid, chapterKey, false); // অধ্যায়-ভিত্তিক ড্যাশবোর্ড
+        loadDashboardData(db, user.uid, false, chapterKey); // অধ্যায়-ভিত্তিক ড্যাশবোর্ড
     }
 }
 
@@ -68,7 +67,6 @@ function setupUserProfile(user) {
 }
 
 function setupUIInteractions() {
-    // Dark Mode Toggle
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.replace('day-mode', 'dark-mode');
@@ -78,7 +76,6 @@ function setupUIInteractions() {
         darkModeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             document.body.classList.toggle('day-mode');
-            
             if (document.body.classList.contains('dark-mode')) {
                 darkModeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
                 localStorage.setItem('theme', 'dark');
@@ -90,7 +87,6 @@ function setupUIInteractions() {
         });
     }
 
-    // Search Bar
     const searchBar = document.getElementById('search-bar');
     if (searchBar) {
         searchBar.addEventListener('input', (e) => {
@@ -103,7 +99,6 @@ function setupUIInteractions() {
         });
     }
     
-    // Back to Top button
     const backToTop = document.getElementById('back-to-top');
     if (backToTop) {
         window.addEventListener('scroll', () => {
@@ -111,7 +106,6 @@ function setupUIInteractions() {
         });
     }
 
-    // Leaderboard Dropdown Click Handler
     const leaderboardBody = document.getElementById('leaderboard-body');
     if (leaderboardBody) {
         leaderboardBody.addEventListener('click', function(event) {
@@ -123,8 +117,6 @@ function setupUIInteractions() {
             if (!detailsRow || !detailsRow.classList.contains('details-row')) return;
             
             const isVisible = detailsRow.style.display === 'table-row';
-
-            // Close all other open details
             document.querySelectorAll('.details-row').forEach(row => {
                 if (row !== detailsRow) {
                     row.style.display = 'none';
@@ -136,7 +128,6 @@ function setupUIInteractions() {
                 }
             });
 
-            // Toggle the clicked one
             detailsRow.style.display = isVisible ? 'none' : 'table-row';
             const icon = button.querySelector('i');
             icon.classList.toggle('fa-chevron-up', !isVisible);
@@ -150,7 +141,7 @@ function setupUIInteractions() {
 // ===============================================
 
 /**
- * Loads the main leaderboard with aggregated scores from all chapters.
+ * Loads the main leaderboard, filtering only for chapters starting with "NCERT_".
  * @param {firebase.firestore.Firestore} db
  */
 function loadMainLeaderboard(db) {
@@ -172,11 +163,14 @@ function loadMainLeaderboard(db) {
             let chapterDetails = '';
 
             if (userData.chapters) {
-                for (const key in userData.chapters) {
-                    const chapter = userData.chapters[key];
-                    totalScore += chapter.totalScore || 0;
-                    if (chapter.totalScore > 0) {
-                        chapterDetails += `<li><span class="label">${key.replace(/_/g, ' ')}:</span> ${chapter.totalScore}</li>`;
+                for (const chapterKey in userData.chapters) {
+                    if (chapterKey.startsWith("NCERT_")) {
+                        const chapter = userData.chapters[chapterKey];
+                        totalScore += chapter.totalScore || 0;
+                        if (chapter.totalScore > 0) {
+                            let cleanName = chapterKey.replace("NCERT_", "").replace(/_/g, " ");
+                            chapterDetails += `<li><span class="label">${cleanName}</span>: ${chapter.totalScore}</li>`;
+                        }
                     }
                 }
             }
@@ -184,19 +178,18 @@ function loadMainLeaderboard(db) {
                 allUsersData.push({
                     displayName: userData.displayName || 'Unknown User',
                     totalScore: totalScore,
-                    details: chapterDetails || '<li>কোনো বিস্তারিত স্কোর নেই।</li>'
+                    details: chapterDetails || '<li>এই কোর্সে কোনো বিস্তারিত স্কোর নেই।</li>'
                 });
             }
         });
 
         if (allUsersData.length === 0) {
-            leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">কোনো স্কোর পাওয়া যায়নি।</td></tr>';
+            leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">এই কোর্সের জন্য কোনো স্কোর পাওয়া যায়নি।</td></tr>';
             return;
         }
 
-        // Sort users by total score in descending order
         allUsersData.sort((a, b) => b.totalScore - a.totalScore);
-
+        
         let leaderboardHTML = '';
         allUsersData.slice(0, 10).forEach((user, index) => {
             const rank = index + 1;
@@ -224,6 +217,7 @@ function loadMainLeaderboard(db) {
         leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">ত্রুটি: লিডারবোর্ড লোড করা যায়নি।</td></tr>';
     });
 }
+
 
 /**
  * Loads chapter-specific leaderboard data.
@@ -253,7 +247,6 @@ function loadChapterLeaderboard(db, chapterKey) {
                 
                 if (chapterData && chapterData.totalScore > 0) {
                     foundScores = true;
-                    
                     let icon = '';
                     if (rank === 1) icon = '<i class="fa-solid fa-trophy" style="color: #ffd700;"></i> ';
                     else if (rank === 2) icon = '<i class="fa-solid fa-medal" style="color: #c0c0c0;"></i> ';
@@ -285,10 +278,10 @@ function loadChapterLeaderboard(db, chapterKey) {
                 }
             });
 
-            if (foundScores) {
-                leaderboardBody.innerHTML = leaderboardHTML;
-            } else {
+            if (!foundScores) {
                  leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">এই অধ্যায়ের জন্য কোনো স্কোর পাওয়া যায়নি।</td></tr>';
+            } else {
+                leaderboardBody.innerHTML = leaderboardHTML;
             }
         })
         .catch(error => {
@@ -301,10 +294,10 @@ function loadChapterLeaderboard(db, chapterKey) {
  * Loads dashboard data. Can show aggregated or specific chapter data.
  * @param {firebase.firestore.Firestore} db
  * @param {string} userId - The current user's ID.
- * @param {string} chapterKey - The Firestore-safe key for the chapter.
  * @param {boolean} isHomePage - Flag to indicate if it's the main homepage.
+ * @param {string} [chapterKey] - Optional: The key for a specific chapter. Only used when isHomePage is false.
  */
-function loadDashboardData(db, userId, chapterKey, isHomePage) {
+function loadDashboardData(db, userId, isHomePage, chapterKey) {
     const quizLinks = document.querySelectorAll('#quiz-sets .link-container a');
     const totalQuizzesOnPage = quizLinks.length;
 
@@ -321,15 +314,15 @@ function loadDashboardData(db, userId, chapterKey, isHomePage) {
         let completedQuizzes = 0, correctAnswers = 0, wrongAnswers = 0;
 
         if (isHomePage) {
-            // Aggregate data from all chapters for the homepage
             for (const key in allChaptersData) {
-                const chapter = allChaptersData[key];
-                completedQuizzes += chapter.completedQuizzesCount || 0;
-                correctAnswers += chapter.totalCorrect || 0;
-                wrongAnswers += chapter.totalWrong || 0;
+                if (key.startsWith("NCERT_")) {
+                    const chapter = allChaptersData[key];
+                    completedQuizzes += chapter.completedQuizzesCount || 0;
+                    correctAnswers += chapter.totalCorrect || 0;
+                    wrongAnswers += chapter.totalWrong || 0;
+                }
             }
         } else {
-            // Get data for a specific chapter
             const chapterData = allChaptersData[chapterKey] || {};
             completedQuizzes = chapterData.completedQuizzesCount || 0;
             correctAnswers = chapterData.totalCorrect || 0;
@@ -349,6 +342,7 @@ function loadDashboardData(db, userId, chapterKey, isHomePage) {
         loadDailyChallenge();
     });
 }
+
 
 // ===============================================
 // --- Dashboard Update Functions ---
