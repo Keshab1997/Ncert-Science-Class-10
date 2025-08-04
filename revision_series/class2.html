@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 02 - MCQ Practice (অ্যাসিড, ক্ষার ও লবণ)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); --correct-bg: #2ecc71; --incorrect-bg: #e74c3c; }
+        [data-theme="forest"] { --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; }
+        [data-theme="ocean"] { --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; }
+        [data-theme="sunset"] { --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; }
+        .dark-mode { --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .nav-button { display: inline-block; padding: 12px 25px; border: 1px solid var(--nav-button-border); border-radius: 8px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 600; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; color:white; }
+        .navigation { max-width: 900px; margin: 40px auto 0; padding-top: 20px; border-top: 2px solid var(--nav-button-border); display: flex; justify-content: space-between; align-items: center; width: 100%;}
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .theme-buttons button, .mcq-controls, .dark-mode-toggle { flex-shrink: 0; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question { margin-bottom: 40px; padding: 20px; border-radius: 10px; border: 2px solid transparent; transition: box-shadow 0.3s, border-color 0.3s; }
+        .mcq-question.active-question { border-color: var(--accent-color); box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5); }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://static.vecteezy.com/system/resources/previews/019/501/242/original/chemistry-icon-for-your-website-design-logo-app-ui-free-vector.jpg" alt="Chemistry Logo" class="logo">
+        <h1>অ্যাসিড, ক্ষার ও লবণ</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন ১-১০)</option>
+                <option value="2">Set 2 (প্রশ্ন ১১-২০)</option>
+                <option value="3">Set 3 (প্রশ্ন ২১-৩০)</option>
+            </select>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 02 - বিগত বছরের প্রশ্নাবলী (অধ্যায় ২)</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="class1.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+        <a href="class3.html" class="nav-button">পরবর্তী</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2024 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const correctSound = new Audio('correct.mp3');
+            const wrongSound = new Audio('wrong.mp3');
+            
+            // --- THEME, MODE, & SCROLL BUTTON LOGIC (Unchanged) ---
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) {
+                if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+                else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+                localStorage.setItem('selected_mode', mode);
+            }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+                scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+                scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            // --- INTERACTIVE MCQ LOGIC ---
+            const mcqData = [
+                { q: "অ্যাসিড এবং ক্ষারের উপস্থিতি নির্দেশ করতে কোনটি ব্যবহার করা হয়?", o: ["লিটমাস কাগজ", "সোডিয়াম ক্লোরাইড", "গ্লুকোজ", "জিঙ্ক"], a: 0, ex: "লিটমাস কাগজ একটি প্রাকৃতিক নির্দেশক (indicator), যা কোনো দ্রবণ অ্যাসিডিক না ক্ষারীয়, তা রঙ পরিবর্তনের মাধ্যমে জানিয়ে দেয়।" },
+                { q: "নীল লিটমাসকে লাল করে কোন ধরনের পদার্থ?", o: ["ক্ষার", "অ্যাসিড", "লবণ", "জল"], a: 1, ex: "অ্যাসিডের একটি প্রধান ধর্ম হলো এটি নীল লিটমাস কাগজকে লাল রঙে পরিণত করে। ক্ষার এর বিপরীত কাজ করে, অর্থাৎ লাল লিটমাসকে নীল করে।" },
+                { q: "ফেনলফথ্যালিন ক্ষারীয় দ্রবণে কোন রঙ দেখায়?", o: ["লাল", "গোলাপী", "নীল", "সাদা"], a: 1, ex: "ফেনলফথ্যালিন একটি কৃত্রিম নির্দেশক। এটি অ্যাসিডিক বা প্রশমিত দ্রবণে বর্ণহীন থাকে, কিন্তু ক্ষারীয় দ্রবণে গোলাপী বর্ণ ধারণ করে।" },
+                { q: "ধাতুর সাথে অ্যাসিডের বিক্রিয়ায় সাধারণত কোন গ্যাস নির্গত হয়?", o: ["অক্সিজেন", "হাইড্রোজেন", "কার্বন ডাইঅক্সাইড", "নাইট্রোজেন"], a: 1, ex: "সক্রিয় ধাতুগুলি লঘু অ্যাসিডের সাথে বিক্রিয়া করে লবণ এবং হাইড্রোজেন গ্যাস উৎপন্ন করে। যেমন, Zn + 2HCl → ZnCl₂ + H₂।" },
+                { q: "ধাতব কার্বনেটের সাথে অ্যাসিডের বিক্রিয়ায় কোন গ্যাস তৈরি হয়?", o: ["H₂", "O₂", "CO₂", "N₂"], a: 2, ex: "যেকোনো ধাতব কার্বনেট বা বাইকার্বনেট অ্যাসিডের সাথে বিক্রিয়া করে লবণ, জল এবং কার্বন ডাইঅক্সাইড (CO₂) গ্যাস তৈরি করে।" },
+                { q: "প্রশমন বিক্রিয়ায় কী তৈরি হয়?", o: ["লবণ এবং জল", "গ্যাস এবং ধাতু", "অ্যাসিড এবং ক্ষার", "শুধু গ্যাস"], a: 0, ex: "অ্যাসিড এবং ক্ষারের বিক্রিয়ায় একে অপরের ধর্ম বিলুপ্ত হয় এবং লবণ ও জল উৎপন্ন হয়। এই বিক্রিয়াকে প্রশমন বিক্রিয়া বলে।" },
+                { q: "ধাতব অক্সাইডগুলির প্রকৃতি সাধারণত কী রকম হয়?", o: ["আম্লিক (Acidic)", "ক্ষারীয় (Basic)", "প্রশমিত (Neutral)", "উভধর্মী (Amphoteric)"], a: 1, ex: "বেশিরভাগ ধাতব অক্সাইড ক্ষারীয় প্রকৃতির হয়, কারণ এরা জলের সাথে বিক্রিয়া করে ক্ষার তৈরি করে। যেমন, CaO + H₂O → Ca(OH)₂।" },
+                { q: "অধাতব অক্সাইডগুলির প্রকৃতি কী?", o: ["ক্ষারীয়", "আম্লিক (Acidic)", "প্রশমিত", "নিরপেক্ষ"], a: 1, ex: "অধাতব অক্সাইডগুলি সাধারণত আম্লিক (Acidic) প্রকৃতির হয়। এরা জলের সাথে বিক্রিয়া করে অ্যাসিড তৈরি করে। যেমন, CO₂ + H₂O → H₂CO₃।" },
+                { q: "জলীয় দ্রবণে অ্যাসিড কোন আয়ন তৈরি করে?", o: ["OH⁻", "H⁺", "Na⁺", "Cl⁻"], a: 1, ex: "আরহেনিয়াসের তত্ত্ব অনুযায়ী, অ্যাসিড হলো সেইসব পদার্থ যারা জলীয় দ্রবণে বিয়োজিত হয়ে হাইড্রোজেন আয়ন (H⁺) বা হাইড্রোনিয়াম আয়ন (H₃O⁺) উৎপন্ন করে।" },
+                { q: "ক্ষার জলে কোন আয়ন তৈরি করে?", o: ["H⁺", "OH⁻", "CO₃²⁻", "SO₄²⁻"], a: 1, ex: "আরহেনিয়াসের তত্ত্ব অনুযায়ী, ক্ষার হলো সেইসব পদার্থ যারা জলীয় দ্রবণে বিয়োজিত হয়ে হাইড্রোক্সাইড আয়ন (OH⁻) উৎপন্ন করে।" },
+                { q: "একটি প্রশমিত দ্রবণের pH মান কত?", o: ["7", "5", "9", "3"], a: 0, ex: "pH স্কেলে 7 হলো প্রশমিত বা নিরপেক্ষ মান। 7-এর কম হলে দ্রবণটি আম্লিক এবং 7-এর বেশি হলে ক্ষারীয় হয়।" },
+                { q: "বৃষ্টির জলের pH কত-এর কম হলে তাকে অ্যাসিড বৃষ্টি বলা হয়?", o: ["7", "5.6", "8", "4"], a: 1, ex: "স্বাভাবিক বৃষ্টির জলের pH সামান্য আম্লিক (প্রায় 5.6) হয়। কিন্তু যখন এর মান 5.6-এর নীচে নেমে যায়, তখন তাকে অ্যাসিড বৃষ্টি বলে।" },
+                { q: "পাকস্থলীর অ্যাসিডিটি বা অম্বল দূর করতে কী ব্যবহার করা হয়?", o: ["অ্যান্টাসিড", "অ্যান্টিবায়োটিক", "অ্যানালজেসিক", "অ্যান্টিসেপটিক"], a: 0, ex: "অ্যান্টাসিড হলো মৃদু ক্ষার (যেমন, ম্যাগনেসিয়াম হাইড্রক্সাইড), যা পাকস্থলীর অতিরিক্ত অ্যাসিডকে প্রশমিত করে স্বস্তি দেয়।" },
+                { q: "দাঁতের ক্ষয় শুরু হয় মুখের pH-এর মান কতর নীচে নেমে গেলে?", o: ["7", "5.5", "8", "6"], a: 1, ex: "আমরা যখন শর্করা জাতীয় খাবার খাই, তখন মুখের ব্যাকটেরিয়া অ্যাসিড তৈরি করে। মুখের ভেতরের পরিবেশের pH মান 5.5-এর নীচে নেমে গেলেই দাঁতের এনামেলের ক্ষয় শুরু হয়।" },
+                { q: "বেকিং সোডার রাসায়নিক নাম কী?", o: ["সোডিয়াম কার্বনেট", "সোডিয়াম হাইড্রোজেনকার্বনেট", "ক্যালসিয়াম কার্বনেট", "সোডিয়াম ক্লোরাইড"], a: 1, ex: "বেকিং সোডার রাসায়নিক নাম হলো সোডিয়াম হাইড্রোজেনকার্বনেট বা সোডিয়াম বাইকার্বনেট, যার সংকেত NaHCO₃।" },
+                { q: "প্লাস্টার অফ প্যারিসের রাসায়নিক সংকেত কী?", o: ["CaSO₄.2H₂O", "CaSO₄.½H₂O", "Na₂CO₃.10H₂O", "CuSO₄.5H₂O"], a: 1, ex: "প্লাস্টার অফ প্যারিসের রাসায়নিক নাম ক্যালসিয়াম সালফেট হেমিহাইড্রেট এবং এর সংকেত CaSO₄.½H₂O। 'হেমি' মানে অর্ধেক।" },
+                { q: "কেলাস-জল (Water of Crystallisation) কী?", o: ["লবণের এককে উপস্থিত জলের অণু", "অ্যাসিডে উপস্থিত জল", "ক্ষারে উপস্থিত জল", "গ্যাসে উপস্থিত জল"], a: 0, ex: "কিছু লবণের কেলাস গঠনের সময় নির্দিষ্ট সংখ্যক জলের অণু তাদের সাথে যুক্ত থাকে। এই জলের অণুগুলোকেই কেলাস-জল বলে।" },
+                { q: "ক্লোর-অ্যালকালি প্রক্রিয়ায় কোনটি তৈরি হয়?", o: ["NaOH", "NaCl", "HCl", "H₂SO₄"], a: 0, ex: "সোডিয়াম ক্লোরাইডের ঘন জলীয় দ্রবণের তড়িৎবিশ্লেষণের মাধ্যমে সোডিয়াম হাইড্রক্সাইড (NaOH), ক্লোরিন এবং হাইড্রোজেন গ্যাস তৈরি করা হয়। এই প্রক্রিয়াকে ক্লোর-অ্যালকালি প্রক্রিয়া বলে।" },
+                { q: "ব্লিচিং পাউডার কীসের সাথে বিক্রিয়া করে তৈরি হয়?", o: ["ক্লোরিন ও কলিচুন", "অ্যাসিড ও ধাতু", "ক্ষার ও জল", "লবণ ও গ্যাস"], a: 0, ex: "শুকনো কলিচুনের [Ca(OH)₂] উপর দিয়ে ক্লোরিন গ্যাস চালনা করলে ব্লিচিং পাউডার (ক্যালসিয়াম অক্সিক্লোরাইড) তৈরি হয়।" },
+                { q: "ওয়াশিং সোডা বা কাচা সোডার রাসায়নিক সংকেত কী?", o: ["NaHCO₃", "Na₂CO₃.10H₂O", "CaSO₄.½H₂O", "CuSO₄.5H₂O"], a: 1, ex: "ওয়াশিং সোডার রাসায়নিক নাম সোডিয়াম কার্বনেট ডেকাহাইড্রেট এবং এর সংকেত হলো Na₂CO₃.10H₂O। এটি জলকে মৃদু করতে এবং পরিষ্কারক হিসেবে ব্যবহৃত হয়।" },
+                { q: "লাল লিটমাসকে নীল করে কোন ধরনের পদার্থ?", o: ["অ্যাসিড", "ক্ষার", "লবণ", "জল"], a: 1, ex: "ক্ষারকের একটি প্রধান ধর্ম হলো এটি লাল লিটমাস কাগজকে নীল রঙে পরিণত করে। অ্যাসিড এর বিপরীত কাজ করে।" },
+                { q: "পেঁয়াজের গন্ধ কোন ধরনের সূচকের উদাহরণ?", o: ["প্রাকৃতিক সূচক", "ঘ্রাণজ সূচক", "কৃত্রিম সূচক", "সার্বজনীন সূচক"], a: 1, ex: "যেসব পদার্থের গন্ধ অ্যাসিডিক বা ক্ষারীয় মাধ্যমে পরিবর্তিত হয়, তাদের ঘ্রাণজ সূচক (Olfactory Indicator) বলে। পেঁয়াজ, ভ্যানিলা ইত্যাদি এর উদাহরণ।" },
+                { q: "অ্যাসিড এবং ক্ষারের বিক্রিয়াকে কী বলা হয়?", o: ["প্রশমন", "বিয়োজন", "সংযোজন", "প্রতিস্থাপন"], a: 0, ex: "অ্যাসিড ও ক্ষারের মধ্যে বিক্রিয়ার ফলে লবণ ও জল উৎপন্ন হয় এবং উভয়ই তাদের নিজ নিজ ধর্ম হারিয়ে ফেলে। এই বিক্রিয়াকে প্রশমন বিক্রিয়া বলে।" },
+                { q: "একটি অ্যাসিডিক দ্রবণের pH মান কেমন হবে?", o: ["7-এর সমান", "7-এর কম", "7-এর বেশি", "14-এর সমান"], a: 1, ex: "pH স্কেলে 7-এর কম মানযুক্ত দ্রবণগুলি আম্লিক বা অ্যাসিডিক প্রকৃতির হয়। pH যত কম, অ্যাসিড তত শক্তিশালী।" },
+                { q: "অ্যাসিড বৃষ্টির ফলে কোন ঐতিহাসিক সৌধ ক্ষতিগ্রস্ত হচ্ছে?", o: ["আইফেল টাওয়ার", "তাজমহল", "কুতুব মিনার", "লালকেল্লা"], a: 1, ex: "তাজমহল মার্বেল পাথর (ক্যালসিয়াম কার্বনেট) দিয়ে তৈরি। অ্যাসিড বৃষ্টি এই মার্বেলের সাথে বিক্রিয়া করে সৌধের ক্ষতি করছে, যাকে 'স্টোন ক্যান্সার' বলা হয়।" },
+                { q: "বেকিং সোডা গরম করলে কোন গ্যাস উৎপন্ন হয়?", o: ["H₂", "CO₂", "O₂", "N₂"], a: 1, ex: "বেকিং সোডাকে (NaHCO₃) তাপ দিলে এটি বিয়োজিত হয়ে সোডিয়াম কার্বনেট, জল এবং কার্বন ডাইঅক্সাইড (CO₂) গ্যাস তৈরি করে।" },
+                { q: "প্লাস্টার অফ প্যারিস জলের সংস্পর্শে এলে কীসে পরিণত হয়?", o: ["জিপসাম", "চুনাপাথর", "মার্বেল", "সিমেন্ট"], a: 0, ex: "প্লাস্টার অফ প্যারিস (CaSO₄.½H₂O) জলের সাথে বিক্রিয়া করে পুনরায় কঠিন জিপসামে (CaSO₄.2H₂O) পরিণত হয়।" },
+                { q: "কপার সালফেট কেলাস থেকে কেলাস-জল অপসারণ করলে এর রঙের কী পরিবর্তন হয়?", o: ["নীল থেকে সাদা", "সাদা থেকে নীল", "লাল থেকে সবুজ", "সবুজ থেকে লাল"], a: 0, ex: "নীল রঙের কপার সালফেট কেলাসকে (CuSO₄.5H₂O) গরম করলে এটি তার কেলাস-জল হারিয়ে সাদা রঙের অনার্দ্র কপার সালফেটে পরিণত হয়।" },
+                { q: "অ্যান্টাসিডের একটি সাধারণ উদাহরণ কী?", o: ["ম্যাগনেসিয়াম হাইড্রক্সাইড", "সোডিয়াম ক্লোরাইড", "হাইড্রোক্লোরিক অ্যাসিড", "সালফিউরিক অ্যাসিড"], a: 0, ex: "ম্যাগনেসিয়াম হাইড্রক্সাইড, যা 'মিল্ক অফ ম্যাগনেসিয়া' নামেও পরিচিত, একটি বহুল ব্যবহৃত অ্যান্টাসিড। এটি একটি মৃদু ক্ষার।" },
+                { q: "ওয়াশিং সোডা কী কাজে ব্যবহৃত হয়?", o: ["জলের স্থায়ী খরতা দূর করতে", "খাবার রান্না করতে", "দাঁত পরিষ্কার করতে", "আগুন নেভাতে"], a: 0, ex: "ওয়াশিং সোডা (সোডিয়াম কার্বনেট) জলের খরতার জন্য দায়ী ক্যালসিয়াম ও ম্যাগনেসিয়াম লবণের সাথে বিক্রিয়া করে তাদের অধঃক্ষিপ্ত করে, ফলে জলের স্থায়ী খরতা দূর হয়।" }
+            ];
+
+            const mcqContainer = document.getElementById('mcq-container');
+            const mcqSetSelector = document.getElementById('mcqSetSelector');
+            const scoreTracker = document.getElementById('score-tracker');
+            
+            let score = 0;
+            let totalQuestionsInSet = 0;
+
+            function generateMCQs(setNumber) {
+                mcqContainer.innerHTML = '';
+                score = 0;
+                
+                const questionsPerSet = 10;
+                const start = (setNumber - 1) * questionsPerSet;
+                const end = Math.min(start + questionsPerSet, mcqData.length);
+                const questionSet = mcqData.slice(start, end);
+
+                totalQuestionsInSet = questionSet.length;
+                updateScoreDisplay();
+
+                questionSet.forEach((item, index) => {
+                    const globalIndex = start + index;
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'mcq-question';
+                    questionDiv.id = `q-${globalIndex}`;
+                    
+                    let optionsHTML = item.o.map((option, i) => 
+                        `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                    ).join('');
+                    
+                    questionDiv.innerHTML = `
+                        <h4>প্রশ্ন ${globalIndex + 1}: ${item.q}</h4>
+                        <div class="mcq-options">${optionsHTML}</div>
+                        <div class="mcq-explanation"><strong>ব্যাখ্যা:</strong> ${item.ex}</div>
+                    `;
+                    mcqContainer.appendChild(questionDiv);
+                });
+                setupOptionListeners();
+                setupIntersectionObserver();
+            }
+            
+            function updateScoreDisplay() {
+                scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+            }
+
+            function handleOptionClick(e) {
+                const selectedOption = e.target.closest('.mcq-option');
+                if (!selectedOption) return;
+                const questionDiv = selectedOption.closest('.mcq-question');
+                if (questionDiv.classList.contains('answered')) return;
+                questionDiv.classList.add('answered');
+                const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+                const selectedIndex = parseInt(selectedOption.dataset.index);
+                const correctIndex = mcqData[globalIndex].a;
+                if (selectedIndex === correctIndex) {
+                    selectedOption.classList.add('correct');
+                    correctSound.play().catch(e => {});
+                    score++;
+                    updateScoreDisplay();
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    wrongSound.play().catch(e => {});
+                    questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+                }
+                questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+            }
+
+            function setupOptionListeners() {
+                mcqContainer.removeEventListener('click', handleOptionClick);
+                mcqContainer.addEventListener('click', handleOptionClick);
+            }
+            
+            mcqSetSelector.addEventListener('change', (e) => {
+                generateMCQs(parseInt(e.target.value, 10));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                const activeQuestion = document.querySelector('.mcq-question.active-question');
+                if (!activeQuestion) return;
+                
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const nextQuestion = activeQuestion.nextElementSibling;
+                    if (nextQuestion) {
+                        nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                } else if (['1', '2', '3', '4'].includes(e.key) && !activeQuestion.classList.contains('answered')) {
+                    e.preventDefault();
+                    const optionIndex = parseInt(e.key) - 1;
+                    const optionToClick = activeQuestion.querySelector(`.mcq-option[data-index="${optionIndex}"]`);
+                    if (optionToClick) {
+                        optionToClick.click();
+                    }
+                }
+            });
+
+            function setupIntersectionObserver() {
+                const questions = document.querySelectorAll('.mcq-question');
+                if (questions.length === 0) return;
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const prevActive = document.querySelector('.mcq-question.active-question');
+                            if (prevActive) prevActive.classList.remove('active-question');
+                            entry.target.classList.add('active-question');
+                        }
+                    });
+                }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+                questions.forEach(q => observer.observe(q));
+            }
+            
+            generateMCQs(1);
+        });
+    </script>
+</body>
+</html>

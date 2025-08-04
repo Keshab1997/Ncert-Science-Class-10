@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ১: রাসায়নিক বিক্রিয়া - Class 01</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-style: italic; font-size: 1.1em; border-radius: 5px; }
+        img { max-width: 100%; height: auto; display: block; margin: 25px auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        .math-formula { background-color: var(--blockquote-bg); padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center; font-size: 1.3em; font-family: 'Courier New', Courier, monospace; border: 1px solid var(--blockquote-border); color: var(--heading-color-1); overflow-x: auto; }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 10px; padding-left: 10px; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .nav-button { display: inline-block; padding: 12px 25px; border: 1px solid var(--nav-button-border); border-radius: 8px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 600; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; color:white; }
+        .navigation { max-width: 900px; margin: 40px auto 0; padding-top: 20px; border-top: 2px solid var(--nav-button-border); display: flex; justify-content: space-between; align-items: center; width: 100%;}
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .tab-buttons { display: flex; flex-wrap: wrap; border-bottom: 2px solid var(--nav-button-border); margin-bottom: 25px; }
+        .tab-button { padding: 12px 20px; cursor: pointer; border: none; background-color: transparent; font-size: 1.05em; font-weight: 600; font-family: 'Hind Siliguri', sans-serif; color: var(--text-color); opacity: 0.7; border-bottom: 3px solid transparent; transition: all 0.3s ease; margin-bottom: -2px; }
+        .tab-button:hover { opacity: 1; background-color: var(--blockquote-bg); }
+        .tab-button.active { color: var(--heading-color-1); border-bottom-color: var(--heading-color-1); opacity: 1; }
+        .tab-content { display: none; animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://www.pngitem.com/pimgs/m/121-1211102_chemistry-flasks-icon-science-lab-equipment-icon-hd.png" alt="Chemistry Logo" class="logo">
+        <h1>অধ্যায় ১: রাসায়নিক বিক্রিয়া ও সমীকরণ</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 01</h2>
+
+        <!-- ট্যাব বাটন -->
+        <div class="tab-buttons">
+            <button class="tab-button active" onclick="openPage('page1', this)">পেজ ১: ভূমিকা</button>
+            <button class="tab-button" onclick="openPage('page2', this)">পেজ ২: রাসায়নিক সমীকরণ</button>
+            <button class="tab-button" onclick="openPage('page3', this)">পেজ ৩: বিক্রিয়ার প্রকারভেদ</button>
+            <button class="tab-button" onclick="openPage('page4', this)">পেজ ৪: জারণের প্রভাব</button>
+        </div>
+
+        <!-- পেজ ১: ভূমিকা -->
+        <div id="page1" class="tab-content active">
+            <h3>এসো, রসায়নের জাদু শিখি!</h3>
+            <p>বন্ধু, চলো আমাদের চারপাশের কিছু ম্যাজিক দেখি!</p>
+            <p>আচ্ছা, গরমকালে দুধ বাইরে রাখলে কী হয়? টক হয়ে যায়, তাই না? আবার একটা লোহার পেরেক যদি ভেজা বাতাসে ফেলে রাখো, দেখবে ওটার ওপর লালচে একটা আস্তরণ পড়েছে, যেটাকে আমরা মরিচা বলি। আঙুর পচে গেলে, ভাত রান্না করলে, এমনকি আমাদের পেটের ভেতর খাবার হজম হওয়া বা আমাদের শ্বাস নেওয়া—এই সবকিছুতেই কিন্তু একটা জাদু লুকিয়ে আছে।</p>
+            <p>এই জাদুটাই হলো <strong>রাসায়নিক পরিবর্তন</strong>। যখন কোনো জিনিসের আসল স্বভাব বা পরিচয় বদলে গিয়ে নতুন কিছু তৈরি হয়, তখন আমরা বলি <strong>রাসায়নিক বিক্রিয়া</strong> (Chemical Reaction) ঘটেছে।</p>
+            
+            <h4>কীভাবে বুঝব রাসায়নিক বিক্রিয়া ঘটছে?</h4>
+            <p>খুব সোজা! চারটে লক্ষণ খেয়াল করলেই হবে:</p>
+            <ol>
+                <li><strong>অবস্থার পরিবর্তন:</strong> কঠিন জিনিস তরল বা গ্যাস হয়ে যেতে পারে।</li>
+                <li><strong>রঙের পরিবর্তন:</strong> যেমন লোহার পেরেকে লালচে মরিচা পড়া।</li>
+                <li><strong>গ্যাস তৈরি হওয়া:</strong> দেখবে কোনো কিছু মেশানোর পর বুদবুদ করে গ্যাস বেরোচ্ছে।</li>
+                <li><strong>তাপমাত্রা বদলানো:</strong> হয় পাত্রটা গরম হয়ে যাবে, নয়তো ঠান্ডা।</li>
+            </ol>
+            <blockquote>যেমন, ম্যাগনেসিয়ামের একটা ফিতেকে যখন আগুনে পোড়ানো হয়, তখন সেটা দপ করে সাদা আলো দিয়ে জ্বলে ওঠে আর সাদা গুঁড়ো ছাই তৈরি করে। এই ছাইটা হলো নতুন জিনিস—ম্যাগনেসিয়াম অক্সাইড। এখানে রঙের পরিবর্তন, আলোর ঝলকানি—সবই হলো।</blockquote>
+        </div>
+
+        <!-- পেজ ২: রাসায়নিক সমীকরণ -->
+        <div id="page2" class="tab-content">
+            <h3>রাসায়নিক সমীকরণ: রসায়নের শর্টকাট ভাষা</h3>
+            <p>একটা রাসায়নিক বিক্রিয়াকে লম্বা করে বাক্যে বর্ণনা করা খুব ঝামেলার। তাই বিজ্ঞানীরা একটা শর্টকাট উপায় বের করেছেন। একে বলে <strong>রাসায়নিক সমীকরণ</strong> (Chemical Equation)।</p>
+            <p>ধরো, আমরা বলতে চাই "ম্যাগনেসিয়াম আর অক্সিজেন মিলে ম্যাগনেসিয়াম অক্সাইড তৈরি করে।" এটাকে ছোট করে লেখা যায়:</p>
+            <div class="math-formula">ম্যাগনেসিয়াম + অক্সিজেন → ম্যাগনেসিয়াম অক্সাইড</div>
+            <ul>
+                <li>যারা বিক্রিয়া করছে (ম্যাগনেসিয়াম ও অক্সিজেন), তারা হলো <strong>বিক্রিয়ক (Reactants)</strong>।</li>
+                <li>বিক্রিয়ার পর যা নতুন তৈরি হলো (ম্যাগনেসিয়াম অক্সাইড), তা হলো <strong>বিক্রিয়াজাত পদার্থ (Product)</strong>।</li>
+                <li>মাঝখানের তীর চিহ্নটা (→) বোঝাচ্ছে বিক্রিয়া কোন দিকে হচ্ছে।</li>
+            </ul>
+            <p>রসায়নে প্রত্যেকটা জিনিসের একটা করে সাংকেতিক নাম (Symbol/Formula) আছে। তাহলে সমীকরণটা দাঁড়াল:</p>
+            <div class="math-formula">Mg + O₂ → MgO</div>
+            
+            <h4>সমীকরণ মেলানো বা Balancing</h4>
+            <p>বিজ্ঞানের একটা পাকা নিয়ম আছে – <strong>কোনো জিনিস এমনি এমনি উধাও হয়ে যায় না, বা আকাশ থেকেও পড়ে না।</strong> একে বলে <strong>ভরের সংরক্ষণ সূত্র</strong>। এর মানে, বিক্রিয়ার আগে যতগুলো পরমাণু থাকবে, বিক্রিয়ার পরেও ঠিক ততগুলোই থাকতে হবে। আমাদের সমীকরণের দু'দিক মেলাতে হবে। এই মেলানোকেই বলে <strong>সমতাবিধান (Balancing)</strong>।</p>
+            
+            <p>চলো, <strong>Fe + H₂O → Fe₃O₄ + H₂</strong> এই সমীকরণটা মেলানো শিখি:</p>
+            <ol>
+                <li><strong>ধাপ ১:</strong> প্রত্যেকটা যৌগের চারপাশে একটা অদৃশ্য বাক্স কল্পনা করো: <strong>[Fe] + [H₂O] → [Fe₃O₄] + [H₂]</strong>। বাক্সের ভেতরের সংকেত পাল্টানো যাবে না।</li>
+                <li><strong>ধাপ ২:</strong> হিসেব করো। বাম দিকে: Fe (1), H (2), O (1)। ডান দিকে: Fe (3), H (2), O (4)।</li>
+                <li><strong>ধাপ ৩:</strong> সবচেয়ে বড় যৌগ (`Fe₃O₄`) দিয়ে শুরু করো। এখানে অক্সিজেন (O) আছে ৪টা। তাই বাম দিকের H₂O-এর সামনে একটা <strong>4</strong> বসাও: <br>Fe + <strong>4</strong>H₂O → Fe₃O₄ + H₂</li>
+                <li><strong>ধাপ ৪:</strong> এখন বাম দিকে হাইড্রোজেন (H) হয়ে গেল ৪ × ২ = ৮টা। তাই ডানদিকের H₂-এর সামনেও একটা <strong>4</strong> বসাও: <br>Fe + 4H₂O → Fe₃O₄ + <strong>4</strong>H₂</li>
+                <li><strong>ধাপ ৫:</strong> এবার ডানদিকে লোহা (Fe) আছে ৩টা। তাই বাম দিকের Fe-এর সামনে একটা <strong>3</strong> বসাও: <br><strong>3</strong>Fe + 4H₂O → Fe₃O₄ + 4H₂</li>
+            </ol>
+            <blockquote>ব্যাস! মিলে গেল! দু'দিকেই এখন ৩টা লোহা, ৮টা হাইড্রোজেন আর ৪টা অক্সিজেন আছে। এটাই হলো <strong>সমতাবিধানযুক্ত সমীকরণ</strong>।</blockquote>
+        </div>
+        
+        <!-- পেজ ৩: বিক্রিয়ার প্রকারভেদ -->
+        <div id="page3" class="tab-content">
+            <h3>রাসায়নিক বিক্রিয়ার প্রকারভেদ: কে কী রকম?</h3>
+            <p>সব রাসায়নিক বিক্রিয়া একরকম হয় না। চলো, ওদের পরিবারের সাথে পরিচিত হই।</p>
+            <h4>১. সংযোজন বিক্রিয়া (Combination Reaction): বন্ধুত্বের বিক্রিয়া!</h4>
+            <p>যখন দুই বা ততোধিক জিনিস জুড়ে গিয়ে <strong>শুধুমাত্র একটি নতুন জিনিস</strong> তৈরি করে। (<strong>A + B → AB</strong>)</p>
+            <ul><li><strong>উদাহরণ:</strong> পোড়াচুন (CaO) যখন জলে মেশানো হয়, তখন কলিচুন (Ca(OH)₂) তৈরি হয় আর পাত্রটা গরম হয়ে যায়। যেসব বিক্রিয়ায় তাপ তৈরি হয়, তাদের <strong>তাপমোচী (Exothermic)</strong> বিক্রিয়া বলে।</li></ul>
+            <div class="math-formula">CaO + H₂O → Ca(OH)₂ + তাপ</div>
+
+            <h4>২. বিয়োজন বিক্রিয়া (Decomposition Reaction): ব্রেক-আপের বিক্রিয়া!</h4>
+            <p>এটা সংযোজন বিক্রিয়ার ঠিক উল্টো। এখানে <strong>একটি জিনিস ভেঙে গিয়ে</strong> দুই বা ততোধিক নতুন জিনিস তৈরি করে। (<strong>AB → A + B</strong>)</p>
+            <ul><li><strong>উদাহরণ:</strong> চুনাপাথরকে (CaCO₃) তাপ দিলে তা ভেঙে পোড়াচুন (CaO) আর কার্বন ডাইঅক্সাইড (CO₂) তৈরি হয়। যেসব বিক্রিয়ায় শক্তি শোষিত হয়, তাদের <strong>তাপগ্রাহী (Endothermic)</strong> বিক্রিয়া বলে।</li></ul>
+            <div class="math-formula">CaCO₃ --(তাপ)→ CaO + CO₂</div>
+
+            <h4>৩. প্রতিস্থাপন বিক্রিয়া (Displacement Reaction): শক্তিশালী বন্ধুর দখলের বিক্রিয়া!</h4>
+            <p>যখন একটি <strong>বেশি শক্তিশালী মৌল</strong> কোনো যৌগ থেকে একটি <strong>কম শক্তিশালী মৌলকে</strong> সরিয়ে দিয়ে তার জায়গা দখল করে। (<strong>A + BC → AC + B</strong>)</p>
+            <ul><li><strong>উদাহরণ:</strong> একটা লোহার পেরেককে কপার সালফেট (CuSO₄) দ্রবণে ডোবালে, লোহা (Fe) কপারকে (Cu) সরিয়ে দেয়।</li></ul>
+            <div class="math-formula">Fe + CuSO₄ → FeSO₄ + Cu</div>
+            
+            <h4>৪. দ্বি-প্রতিস্থাপন বিক্রিয়া (Double Displacement Reaction): বন্ধু বদলের বিক্রিয়া!</h4>
+            <p>যখন দুটি যৌগ নিজেদের মধ্যে আয়ন বা সঙ্গীদের <strong>বিনিময় (exchange)</strong> করে। (<strong>AB + CD → AD + CB</strong>)</p>
+            <ul><li><strong>উদাহরণ:</strong> সোডিয়াম সালফেট (Na₂SO₄) আর বেরিয়াম ক্লোরাইড (BaCl₂) মেশালে, বেরিয়াম সালফেটের (BaSO₄) একটা সাদা <strong>অধঃক্ষেপ (Precipitate)</strong> তৈরি হয়।</li></ul>
+            <div class="math-formula">Na₂SO₄ + BaCl₂ → BaSO₄ (অধঃক্ষেপ) + 2NaCl</div>
+
+            <h4>৫. জারণ-বিজারণ বিক্রিয়া (Redox Reaction): অক্সিজেন দেওয়া-নেওয়ার খেলা!</h4>
+            <ul>
+                <li><strong>জারণ (Oxidation):</strong> কোনো জিনিসের সাথে <strong>অক্সিজেন যুক্ত হওয়া</strong>।</li>
+                <li><strong>বিজারণ (Reduction):</strong> কোনো জিনিস থেকে <strong>অক্সিজেন চলে যাওয়া</strong>।</li>
+            </ul>
+            <div class="math-formula">CuO + H₂ → Cu + H₂O</div>
+            <p>এখানে, CuO থেকে অক্সিজেন চলে গেছে (বিজারণ), আর H₂-এর সাথে অক্সিজেন যুক্ত হয়েছে (জারণ)।</p>
+        </div>
+
+        <!-- পেজ ৪: জারণের প্রভাব -->
+        <div id="page4" class="tab-content">
+            <h3>আমাদের জীবনে জারণের প্রভাব</h3>
+            <p>এই জারণ-বিজারণ আমাদের জীবনে প্রতিদিন ঘটে চলেছে। এর দুটো খারাপ দিক হলো:</p>
+            
+            <h4>১. ক্ষয় (Corrosion): ধাতুর অসুখ</h4>
+            <p>যখন কোনো ধাতু, বিশেষ করে লোহা, বাতাস আর জলের সংস্পর্শে এসে নষ্ট হতে শুরু করে, তখন তাকে <strong>ক্ষয়</strong> বলে। লোহার ক্ষেত্রে একে আমরা <strong>মরিচা পড়া</strong> বলি। রুপোর জিনিস কালো হয়ে যাওয়া বা তামার পাত্রে সবুজ ছোপ পড়াও ক্ষয়ের উদাহরণ।</p>
+            <blockquote>এই কারণে আমরা লোহার জিনিসে রঙ করি, যাতে বাতাস আর জলের হাত থেকে বাঁচানো যায়।</blockquote>
+
+            <h4>২. জারিতগন্ধতা (Rancidity): খাবারের বাসি হওয়া</h4>
+            <p>তেল বা চর্বিযুক্ত খাবার (যেমন চিপস, ভাজাভুজি) অনেকদিন ফেলে রাখলে বাতাসের অক্সিজেনের সাথে বিক্রিয়া করে একটা বাজে গন্ধ বের হয় আর স্বাদ নষ্ট হয়ে যায়। একেই <strong>জারিতগন্ধতা</strong> বলে।</p>
+            <p><strong>এর থেকে বাঁচার উপায় কী?</strong></p>
+            <p>চিপসের প্যাকেটে দেখবে অনেক হাওয়া ভরা থাকে। ওটা কিন্তু সাধারণ বাতাস নয়, ওটা <strong>নাইট্রোজেন গ্যাস</strong>! নাইট্রোজেন খুব অলস, সে তেলের সাথে বিক্রিয়া করে না। তাই চিপস অনেকদিন মুচমুচে আর টাটকা থাকে।</p>
+            <img src="https://images.heb.com/is/image/HEBGrocery/000122485" alt="Chips Packet" style="max-width:300px;">
+        </div>
+        
+    </div>
+
+    <nav class="navigation">
+        <a href="#" class="nav-button disabled">পূর্ববর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+        <a href="Acids, Bases and Salts.html" class="nav-button">পরবর্তী</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2025 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        // ট্যাবের কার্যকারিতার জন্য ফাংশন
+        function openPage(pageName, elmnt) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            document.getElementById(pageName).classList.add('active');
+            elmnt.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // থিম, ডার্ক মোড এবং স্ক্রল বাটনের জন্য JavaScript
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+        });
+    </script>
+</body>
+</html>

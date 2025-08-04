@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 09 - MCQ Practice (রাসায়নিক বিক্রিয়া)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); --correct-bg: #2ecc71; --incorrect-bg: #e74c3c; }
+        [data-theme="forest"] { --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; }
+        [data-theme="ocean"] { --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; }
+        [data-theme="sunset"] { --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; }
+        .dark-mode { --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .nav-button { display: inline-block; padding: 12px 25px; border: 1px solid var(--nav-button-border); border-radius: 8px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 600; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; color:white; }
+        .navigation { max-width: 900px; margin: 40px auto 0; padding-top: 20px; border-top: 2px solid var(--nav-button-border); display: flex; justify-content: space-between; align-items: center; width: 100%;}
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .theme-buttons button, .mcq-controls, .dark-mode-toggle { flex-shrink: 0; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question { margin-bottom: 40px; padding: 20px; border-radius: 10px; border: 2px solid transparent; transition: box-shadow 0.3s, border-color 0.3s; }
+        .mcq-question.active-question { border-color: var(--accent-color); box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5); }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://www.pngitem.com/pimgs/m/121-1211102_chemistry-flasks-icon-science-lab-equipment-icon-hd.png" alt="Chemistry Logo" class="logo">
+        <h1>রাসায়নিক বিক্রিয়া ও সমীকরণ</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন ১-১০)</option>
+                <option value="2">Set 2 (প্রশ্ন ১১-২০)</option>
+                <option value="3">Set 3 (প্রশ্ন ২১-৩০)</option>
+            </select>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 01 - বিগত বছরের প্রশ্নাবলী (অধ্যায় ১)</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="#" class="nav-button disabled">পূর্ববর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+        <a href="class2.html" class="nav-button ">পরবর্তী</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2024 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const correctSound = new Audio('correct.mp3');
+            const wrongSound = new Audio('wrong.mp3');
+            
+            // --- THEME, MODE, & SCROLL BUTTON LOGIC (Unchanged) ---
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) {
+                if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+                else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+                localStorage.setItem('selected_mode', mode);
+            }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+                scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+                scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            // --- INTERACTIVE MCQ LOGIC ---
+            const mcqData = [
+                { q: "রাসায়নিক বিক্রিয়ায় কোনটি ঘটে না?", o: ["অবস্থার পরিবর্তন", "রঙের পরিবর্তন", "গ্যাসের নির্গমন", "ভরের তৈরি হওয়া"], a: 3, ex: "ভরের সংরক্ষণ সূত্র অনুযায়ী, রাসায়নিক বিক্রিয়ায় মোট ভর অপরিবর্তিত থাকে। অর্থাৎ, নতুন কোনো ভর তৈরি হয় না বা ধ্বংসও হয় না।" },
+                { q: "ম্যাগনেসিয়াম ফিতা বাতাসে পোড়ালে কী তৈরি হয়?", o: ["ম্যাগনেসিয়াম সালফেট", "ম্যাগনেসিয়াম অক্সাইড", "ম্যাগনেসিয়াম ক্লোরাইড", "ম্যাগনেসিয়াম নাইট্রেট"], a: 1, ex: "বাতাসের অক্সিজেনের সাথে ম্যাগনেসিয়ামের দহনের ফলে সাদা গুঁড়োর মতো ম্যাগনেসিয়াম অক্সাইড (MgO) তৈরি হয়। এটি একটি সংযোজন বিক্রিয়া।" },
+                { q: "নিচের কোনটি একটি সংযোজন বিক্রিয়ার উদাহরণ?", o: ["CaCO₃ → CaO + CO₂", "C + O₂ → CO₂", "Fe + CuSO₄ → FeSO₄ + Cu", "2AgCl → 2Ag + Cl₂"], a: 1, ex: "সংযোজন বিক্রিয়ায় দুই বা ততোধিক বিক্রিয়ক পদার্থ যুক্ত হয়ে একটিমাত্র বিক্রিয়াজাত পদার্থ তৈরি করে। এখানে কার্বন ও অক্সিজেন যুক্ত হয়ে কার্বন ডাইঅক্সাইড তৈরি হয়েছে।" },
+                { q: "তাপমোচী (Exothermic) বিক্রিয়ায় কী ঘটে?", o: ["শক্তি শোষিত হয়", "তাপ নির্গত হয়", "গ্যাস শোষিত হয়", "ভর কমে যায়"], a: 1, ex: "যেসব বিক্রিয়ায় বিক্রিয়াজাত পদার্থ তৈরির সাথে সাথে তাপশক্তি নির্গত হয়, তাদের তাপমোচী বিক্রিয়া বলা হয়। যেমন, শ্বসন একটি তাপমোচী প্রক্রিয়া।" },
+                { q: "ফেরাস সালফেট গরম করলে কোন গ্যাস নির্গত হয়?", o: ["CO₂", "SO₂ এবং SO₃", "H₂", "O₂"], a: 1, ex: "ফেরাস সালফেটকে (FeSO₄) তাপ দিলে এটি বিয়োজিত হয়ে ফেরিক অক্সাইড (Fe₂O₃), সালফার ডাইঅক্সাইড (SO₂) এবং সালফার ট্রাইঅক্সাইড (SO₃) গ্যাস তৈরি করে। এটি একটি তাপীয় বিয়োজন বিক্রিয়া।" },
+                { q: "জলের তড়িৎবিশ্লেষণে কোন গ্যাসের পরিমাণ দ্বিগুণ হয়?", o: ["অক্সিজেন", "হাইড্রোজেন", "কার্বন ডাইঅক্সাইড", "নাইট্রোজেন"], a: 1, ex: "জলের (H₂O) তড়িৎবিশ্লেষণে দুটি হাইড্রোজেন (H₂) এবং একটি অক্সিজেন (O₂) অণু তৈরি হয় (2H₂O → 2H₂ + O₂)। তাই, হাইড্রোজেনের পরিমাণ অক্সিজেনের দ্বিগুণ হয়।" },
+                { q: "নিচের কোনটি একটি প্রতিস্থাপন বিক্রিয়া?", o: ["2H₂ + O₂ → 2H₂O", "Zn + CuSO₄ → ZnSO₄ + Cu", "Ca(OH)₂ + CO₂ → CaCO₃ + H₂O", "2AgBr → 2Ag + Br₂"], a: 1, ex: "প্রতিস্থাপন বিক্রিয়ায় একটি বেশি সক্রিয় মৌল কোনো যৌগ থেকে একটি কম সক্রিয় মৌলকে সরিয়ে দেয়। এখানে জিঙ্ক (Zn) কপারকে (Cu) প্রতিস্থাপিত করেছে।" },
+                { q: "দ্বি-প্রতিস্থাপন বিক্রিয়ায় কী ঘটে?", o: ["একটি মৌল স্থানচ্যুত হয়", "আয়নের বিনিময় হয়", "একটি পদার্থ বিয়োজিত হয়", "দুটি পদার্থ মিলিত হয়"], a: 1, ex: "দ্বি-প্রতিস্থাপন বিক্রিয়ায় দুটি বিক্রিয়ক যৌগের মধ্যে ক্যাটায়ন ও অ্যানায়নের বিনিময় ঘটে, যার ফলে দুটি নতুন যৌগ তৈরি হয়।" },
+                { q: "জারণ (Oxidation) বলতে কী বোঝায়?", o: ["অক্সিজেন হারানো", "অক্সিজেন লাভ করা", "হাইড্রোজেন লাভ করা", "ইলেকট্রন লাভ করা"], a: 1, ex: "জারণ হলো এমন একটি প্রক্রিয়া যেখানে কোনো পদার্থ অক্সিজেন লাভ করে অথবা হাইড্রোজেন বর্জন করে। যেমন, 2Cu + O₂ → 2CuO, এখানে কপার জারিত হয়েছে।" },
+                { q: "লোহায় মরিচা পড়া কোন ধরনের প্রক্রিয়া?", o: ["জারিতগন্ধতা", "ক্ষয়", "তাপমোচী", "বিয়োজন"], a: 1, ex: "ধাতু যখন জল, বায়ু বা অন্যান্য রাসায়নিক পদার্থের সংস্পর্শে এসে ধীরে ধীরে নষ্ট হয়ে যায়, তখন সেই প্রক্রিয়াকে ক্ষয় (Corrosion) বলে। লোহায় মরিচা পড়া ক্ষয়ের একটি উদাহরণ।" },
+                { q: "চিপসের প্যাকেটে নাইট্রোজেন গ্যাস কেন ভরা হয়?", o: ["জারণ প্রতিরোধ করতে", "প্যাকেট ফোলাতে", "স্বাদ বাড়াতে", "রঙ পরিবর্তন করতে"], a: 0, ex: "চিপসে থাকা তেল ও চর্বি বাতাসের অক্সিজেনের সাথে বিক্রিয়া করে জারিত হয়ে বাজে গন্ধ তৈরি করে। নাইট্রোজেন একটি নিষ্ক্রিয় গ্যাস হওয়ায় এটি জারণ প্রক্রিয়াকে বাধা দেয় এবং চিপসকে টাটকা রাখে।" },
+                { q: "কোন সমীকরণটি সঠিকভাবে সমতাবিধানযুক্ত?", o: ["Mg + O₂ → MgO", "2Mg + O₂ → 2MgO", "Mg + 2O₂ → MgO", "2Mg + 2O₂ → 2MgO"], a: 1, ex: "একটি সমতাবিধানযুক্ত সমীকরণে বিক্রিয়ক ও বিক্রিয়াজাত পদার্থের প্রত্যেকটি মৌলের পরমাণুর সংখ্যা সমান থাকে। এখানে বিকল্প B-তে বামদিকে ২টি Mg ও ২টি O এবং ডানদিকেও ২টি Mg ও ২টি O আছে।" },
+                { q: "শ্বসন কোন ধরনের বিক্রিয়া?", o: ["তাপগ্রাহী", "তাপমোচী", "বিয়োজন", "প্রতিস্থাপন"], a: 1, ex: "শ্বসন প্রক্রিয়ায় গ্লুকোজ ভেঙে শক্তি নির্গত হয়, যা আমাদের শরীরকে উষ্ণ রাখে এবং বিভিন্ন কাজ করতে সাহায্য করে। যেহেতু তাপ নির্গত হয়, তাই এটি একটি তাপমোচী বিক্রিয়া।" },
+                { q: "সিলভার ক্লোরাইড সূর্যালোকে রাখলে কী রঙ ধারণ করে?", o: ["সাদা", "ধূসর", "লাল", "নীল"], a: 1, ex: "সাদা রঙের সিলভার ক্লোরাইড (AgCl) সূর্যালোকে বিয়োজিত হয়ে ধূসর রঙের সিলভার (Ag) এবং ক্লোরিন গ্যাসে পরিণত হয়। এই বিক্রিয়াটি ফটোগ্রাফিতে ব্যবহৃত হতো।" },
+                { q: "নিচের কোনটি একটি তাপগ্রাহী (Endothermic) বিক্রিয়া?", o: ["দহন", "শ্বসন", "জলের তড়িৎবিশ্লেষণ", "কয়লার দহন"], a: 2, ex: "যেসব বিক্রিয়া ঘটানোর জন্য বাইরে থেকে শক্তি (তাপ, আলো বা বিদ্যুৎ) শোষণ করতে হয়, তাদের তাপগ্রাহী বিক্রিয়া বলে। জলের তড়িৎবিশ্লেষণে বিদ্যুৎ শক্তি শোষিত হয়।" },
+                { q: "কপার গুঁড়ো গরম করলে কী রঙের আস্তরণ পড়ে?", o: ["সাদা", "কালো", "সবুজ", "লাল"], a: 1, ex: "কপার গুঁড়োকে বাতাসে গরম করলে এটি অক্সিজেনের সাথে জারিত হয়ে কালো রঙের কপার (II) অক্সাইড (CuO) তৈরি করে।" },
+                { q: "অধঃক্ষেপণ বিক্রিয়ায় কী তৈরি হয়?", o: ["গ্যাস", "অদ্রবণীয় লবণ", "তরল", "কঠিন ধাতু"], a: 1, ex: "যখন দুটি দ্রবণীয় লবণ মেশানোর ফলে একটি অদ্রবণীয় কঠিন পদার্থ তৈরি হয়, তখন তাকে অধঃক্ষেপ বলে। এই অদ্রবণীয় পদার্থটি সাধারণত একটি লবণ হয়।" },
+                { q: "বিজারণ (Reduction) প্রক্রিয়ায় কী ঘটে?", o: ["অক্সিজেন লাভ", "হাইড্রোজেন হারানো", "অক্সিজেন হারানো", "ভর লাভ"], a: 2, ex: "বিজারণ হলো এমন একটি প্রক্রিয়া যেখানে কোনো পদার্থ অক্সিজেন হারায় অথবা হাইড্রোজেন লাভ করে। যেমন, CuO + H₂ → Cu + H₂O, এখানে কপার অক্সাইড বিজারিত হয়েছে।" },
+                { q: "পোড়াচুন (Quicklime) জলের সাথে বিক্রিয়া করে কী তৈরি করে?", o: ["কলিচুন", "চুনাপাথর", "সিমেন্ট", "গ্লুকোজ"], a: 0, ex: "পোড়াচুন (ক্যালসিয়াম অক্সাইড, CaO) জলের সাথে তীব্রভাবে বিক্রিয়া করে কলিচুন (ক্যালসিয়াম হাইড্রক্সাইড, Ca(OH)₂) এবং প্রচুর তাপ উৎপন্ন করে।" },
+                { q: "ক্ষয়ের কারণে রুপোর উপর কোন রঙের আস্তরণ পড়ে?", o: ["সবুজ", "কালো", "লাল", "সাদা"], a: 1, ex: "রুপো বাতাসের হাইড্রোজেন সালফাইড (H₂S) গ্যাসের সাথে বিক্রিয়া করে কালো রঙের সিলভার সালফাইড (Ag₂S) তৈরি করে, যার ফলে রুপোর জিনিস কালো হয়ে যায়।" },
+                { q: "রাসায়নিক সমীকরণ সমতাবিধান করার মূল কারণ কী?", o: ["ভরের সংরক্ষণ সূত্র", "শক্তির সংরক্ষণ", "রঙের পরিবর্তন দেখানো", "গ্যাস নির্গমন নিয়ন্ত্রণ"], a: 0, ex: "ভরের সংরক্ষণ সূত্র অনুযায়ী, রাসায়নিক বিক্রিয়ায় পরমাণু তৈরি বা ধ্বংস হয় না। তাই বিক্রিয়ার আগে ও পরে প্রতিটি মৌলের পরমাণুর সংখ্যা সমান রাখার জন্যই সমীকরণ সমতাবিধান করা হয়।" },
+                { q: "কোন বিক্রিয়ায় একটি পদার্থ ভেঙে দুই বা ততোধিক পদার্থ তৈরি করে?", o: ["বিয়োজন বিক্রিয়া", "সংযোজন বিক্রিয়া", "প্রতিস্থাপন বিক্রিয়া", "দ্বি-প্রতিস্থাপন বিক্রিয়া"], a: 0, ex: "বিয়োজন বিক্রিয়ায় একটি যৌগ ভেঙে একাধিক সরল পদার্থ তৈরি হয়। যেমন, CaCO₃-কে তাপ দিলে CaO এবং CO₂ তৈরি হয়।" },
+                { q: "শ্বসন প্রক্রিয়াটি কোন ধরনের বিক্রিয়ার উদাহরণ?", o: ["শুধুমাত্র তাপমোচী", "শুধুমাত্র জারণ-বিজারণ", "তাপমোচী ও জারণ-বিজারণ উভয়ই", "শুধুমাত্র তাপগ্রাহী"], a: 2, ex: "শ্বসন প্রক্রিয়ায় গ্লুকোজ জারিত হয়ে শক্তি (তাপ) উৎপন্ন করে, তাই এটি একাধারে একটি তাপমোচী এবং জারণ-বিজারণ (Redox) বিক্রিয়া।" },
+                { q: "ফেরাস সালফেট গরম করলে তার রঙের কী পরিবর্তন ঘটে?", o: ["সাদা থেকে সবুজ", "সবুজ থেকে লালচে-বাদামী", "নীল থেকে সাদা", "কালো থেকে সাদা"], a: 1, ex: "সবুজ রঙের ফেরাস সালফেট (FeSO₄) কেলাসকে তাপ দিলে এটি প্রথমে জল ত্যাগ করে সাদা হয় এবং পরে বিয়োজিত হয়ে লালচে-বাদামী রঙের ফেরিক অক্সাইড (Fe₂O₃) তৈরি করে।" },
+                { q: "নিচের কোনটি একটি দ্বি-প্রতিস্থাপন বিক্রিয়ার উদাহরণ?", o: ["Zn + CuSO₄ → ZnSO₄ + Cu", "Na₂SO₄ + BaCl₂ → BaSO₄ + 2NaCl", "2H₂ + O₂ → 2H₂O", "CaCO₃ → CaO + CO₂"], a: 1, ex: "এখানে সোডিয়াম সালফেট ও বেরিয়াম ক্লোরাইডের মধ্যে আয়নের বিনিময় ঘটেছে, যার ফলে বেরিয়াম সালফেটের সাদা অধঃক্ষেপ তৈরি হয়েছে। এটি একটি আদর্শ দ্বি-প্রতিস্থাপন বিক্রিয়া।" },
+                { q: "লোহার পেরেক কপার সালফেট দ্রবণে ডোবালে দ্রবণের রঙ কেন ফ্যাকাশে হয়ে যায়?", o: ["জারণের কারণে", "প্রতিস্থাপন বিক্রিয়ার কারণে", "বিয়োজনের কারণে", "সংযোজনের কারণে"], a: 1, ex: "লোহা কপারের চেয়ে বেশি সক্রিয় হওয়ায় এটি কপার সালফেট দ্রবণ থেকে কপারকে প্রতিস্থাপন করে। এর ফলে নীল রঙের কপার সালফেটের বদলে ফ্যাকাশে সবুজ রঙের আয়রন সালফেট তৈরি হয়।" },
+                { q: "জারিতগন্ধতা (Rancidity) প্রতিরোধ করতে চিপসের ব্যাগে কোন গ্যাস ব্যবহার করা হয়?", o: ["অক্সিজেন", "কার্বন ডাইঅক্সাইড", "নাইট্রোজেন", "হাইড্রোজেন"], a: 2, ex: "নাইট্রোজেন একটি প্রায়-নিষ্ক্রিয় গ্যাস, যা চিপসের মধ্যে থাকা তেল বা চর্বির জারণ প্রতিরোধ করে। ফলে চিপস দীর্ঘ সময় ধরে টাটকা থাকে।" },
+                { q: "সিলভার ক্লোরাইড সূর্যালোকে কোন ধরনের বিক্রিয়া প্রদর্শন করে?", o: ["সংযোজন", "তাপীয় বিয়োজন", "আলোক-রাসায়নিক বিয়োজন", "প্রতিস্থাপন"], a: 2, ex: "যেসব বিয়োজন বিক্রিয়া আলোর শক্তির প্রভাবে ঘটে, তাদের আলোক-রাসায়নিক বিয়োজন বলে। সিলভার ক্লোরাইডের বিয়োজন এর একটি প্রকৃষ্ট উদাহরণ।" },
+                { q: "কোন বিক্রিয়ায় শক্তি শোষিত হয়?", o: ["দহন", "শ্বসন", "জলের তড়িৎবিশ্লেষণ", "পোড়াচুনের সাথে জলের বিক্রিয়া"], a: 2, ex: "জলের তড়িৎবিশ্লেষণ একটি তাপগ্রাহী বিক্রিয়া, কারণ এখানে জলকে ভাঙার জন্য বাইরে থেকে বিদ্যুৎ শক্তি সরবরাহ করতে হয়।" },
+                { q: "লোহায় মরিচা পড়া মূলত কোন ধরনের রাসায়নিক প্রক্রিয়ার উদাহরণ?", o: ["শুধুমাত্র জারণ", "বিজারণ", "জারণ-বিজারণ (Redox)", "অধঃক্ষেপণ"], a: 2, ex: "মরিচা পড়া একটি জটিল জারণ-বিজারণ (Redox) প্রক্রিয়া, যেখানে লোহা জারিত হয়ে আয়রনের অক্সাইড তৈরি করে এবং অক্সিজেন বিজারিত হয়।" }
+            ];
+
+            const mcqContainer = document.getElementById('mcq-container');
+            const mcqSetSelector = document.getElementById('mcqSetSelector');
+            const scoreTracker = document.getElementById('score-tracker');
+            
+            let score = 0;
+            let totalQuestionsInSet = 0;
+
+            function generateMCQs(setNumber) {
+                mcqContainer.innerHTML = '';
+                score = 0;
+                
+                const questionsPerSet = 10;
+                const start = (setNumber - 1) * questionsPerSet;
+                const end = Math.min(start + questionsPerSet, mcqData.length);
+                const questionSet = mcqData.slice(start, end);
+
+                totalQuestionsInSet = questionSet.length;
+                updateScoreDisplay();
+
+                questionSet.forEach((item, index) => {
+                    const globalIndex = start + index;
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'mcq-question';
+                    questionDiv.id = `q-${globalIndex}`;
+                    
+                    let optionsHTML = item.o.map((option, i) => 
+                        `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                    ).join('');
+                    
+                    questionDiv.innerHTML = `
+                        <h4>প্রশ্ন ${globalIndex + 1}: ${item.q}</h4>
+                        <div class="mcq-options">${optionsHTML}</div>
+                        <div class="mcq-explanation"><strong>ব্যাখ্যা:</strong> ${item.ex}</div>
+                    `;
+                    mcqContainer.appendChild(questionDiv);
+                });
+                setupOptionListeners();
+                setupIntersectionObserver();
+            }
+            
+            function updateScoreDisplay() {
+                scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+            }
+
+            function handleOptionClick(e) {
+                const selectedOption = e.target.closest('.mcq-option');
+                if (!selectedOption) return;
+                const questionDiv = selectedOption.closest('.mcq-question');
+                if (questionDiv.classList.contains('answered')) return;
+                questionDiv.classList.add('answered');
+                const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+                const selectedIndex = parseInt(selectedOption.dataset.index);
+                const correctIndex = mcqData[globalIndex].a;
+                if (selectedIndex === correctIndex) {
+                    selectedOption.classList.add('correct');
+                    correctSound.play().catch(e => {});
+                    score++;
+                    updateScoreDisplay();
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    wrongSound.play().catch(e => {});
+                    questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+                }
+                questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+            }
+
+            function setupOptionListeners() {
+                mcqContainer.removeEventListener('click', handleOptionClick);
+                mcqContainer.addEventListener('click', handleOptionClick);
+            }
+            
+            mcqSetSelector.addEventListener('change', (e) => {
+                generateMCQs(parseInt(e.target.value, 10));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                const activeQuestion = document.querySelector('.mcq-question.active-question');
+                if (!activeQuestion) return;
+                
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const nextQuestion = activeQuestion.nextElementSibling;
+                    if (nextQuestion) {
+                        nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                } else if (['1', '2', '3', '4'].includes(e.key) && !activeQuestion.classList.contains('answered')) {
+                    e.preventDefault();
+                    const optionIndex = parseInt(e.key) - 1;
+                    const optionToClick = activeQuestion.querySelector(`.mcq-option[data-index="${optionIndex}"]`);
+                    if (optionToClick) {
+                        optionToClick.click();
+                    }
+                }
+            });
+
+            function setupIntersectionObserver() {
+                const questions = document.querySelectorAll('.mcq-question');
+                if (questions.length === 0) return;
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const prevActive = document.querySelector('.mcq-question.active-question');
+                            if (prevActive) prevActive.classList.remove('active-question');
+                            entry.target.classList.add('active-question');
+                        }
+                    });
+                }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+                questions.forEach(q => observer.observe(q));
+            }
+            
+            generateMCQs(1);
+        });
+    </script>
+</body>
+</html>

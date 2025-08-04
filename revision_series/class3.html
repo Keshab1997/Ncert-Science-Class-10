@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 03 - MCQ Practice (ধাতু ও অধাতু)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); --correct-bg: #2ecc71; --incorrect-bg: #e74c3c; }
+        [data-theme="forest"] { --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; }
+        [data-theme="ocean"] { --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; }
+        [data-theme="sunset"] { --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; }
+        .dark-mode { --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .nav-button { display: inline-block; padding: 12px 25px; border: 1px solid var(--nav-button-border); border-radius: 8px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 600; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; color:white; }
+        .navigation { max-width: 900px; margin: 40px auto 0; padding-top: 20px; border-top: 2px solid var(--nav-button-border); display: flex; justify-content: space-between; align-items: center; width: 100%;}
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .theme-buttons button, .mcq-controls, .dark-mode-toggle { flex-shrink: 0; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question { margin-bottom: 40px; padding: 20px; border-radius: 10px; border: 2px solid transparent; transition: box-shadow 0.3s, border-color 0.3s; }
+        .mcq-question.active-question { border-color: var(--accent-color); box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5); }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://cdn-icons-png.flaticon.com/512/2857/2857329.png" alt="Metals Logo" class="logo">
+        <h1>ধাতু ও অধাতুর জগৎ</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন ১-১০)</option>
+                <option value="2">Set 2 (প্রশ্ন ১১-২০)</option>
+                <option value="3">Set 3 (প্রশ্ন ২১-৩০)</option>
+            </select>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 03 - বিগত বছরের প্রশ্নাবলী (অধ্যায় ৩)</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="class2.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+        <a href="class4.html" class="nav-button">পরবর্তী</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2024 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const correctSound = new Audio('correct.mp3');
+            const wrongSound = new Audio('wrong.mp3');
+            
+            // --- THEME, MODE, & SCROLL BUTTON LOGIC (Unchanged) ---
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) {
+                if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+                else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+                localStorage.setItem('selected_mode', mode);
+            }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+                scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+                scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            // --- INTERACTIVE MCQ LOGIC ---
+            const mcqData = [
+                { q: "ধাতুর একটি সাধারণ ভৌত ধর্ম কোনটি?", o: ["দ্যুতিময় এবং নমনীয়", "কুপরিবাহী এবং ভঙ্গুর", "গ্যাসীয় এবং তরল", "অদ্যুতিময় এবং অপ্রসারণশীল"], a: 0, ex: "ধাতুগুলির প্রধান ভৌত ধর্ম হলো এগুলি চকচকে (দ্যুতিময়), এদের পিটিয়ে পাত তৈরি করা যায় (নমনীয়) এবং টেনে তার বানানো যায় (প্রসারণশীল)।" },
+                { q: "কোন ধাতু ঘরের তাপমাত্রায় তরল অবস্থায় থাকে?", o: ["লোহা", "পারদ", "তামা", "সোনা"], a: 1, ex: "পারদ (Mercury) হলো একমাত্র ধাতু যা সাধারণ ঘরের তাপমাত্রায় তরল থাকে। অন্য সব ধাতু কঠিন অবস্থায় থাকে।" },
+                { q: "ধাতব দ্যুতি (Lustre) বলতে কী বোঝায়?", o: ["শব্দ তৈরি করার ক্ষমতা", "চকচকে পৃষ্ঠ", "তাপ পরিবহন ক্ষমতা", "বিদ্যুৎ পরিবহন ক্ষমতা"], a: 1, ex: "ধাতুগুলির পৃষ্ঠ সাধারণত উজ্জ্বল বা চকচকে হয়। এই ধর্মকেই ধাতব দ্যুতি বলা হয়।" },
+                { q: "কোন ধাতু সবচেয়ে বেশি নমনীয় (Malleable)?", o: ["লোহা", "সোনা", "তামা", "জিঙ্ক"], a: 1, ex: "সোনা এবং রুপা সবচেয়ে নমনীয় ধাতু। এদের পিটিয়ে খুব পাতলা পাতে পরিণত করা যায়, যা মিষ্টি সাজানোর কাজে ব্যবহৃত হয়।" },
+                { q: "ধাতু তাপের সুপরিবাহী কেন?", o: ["নমনীয়তার কারণে", "উচ্চ গলনাঙ্কের কারণে", "মুক্ত ইলেকট্রনের উপস্থিতির কারণে", "শব্দ তৈরির কারণে"], a: 2, ex: "ধাতুর মধ্যে থাকা মুক্ত ইলেকট্রনগুলি সহজেই চলাচল করতে পারে এবং তাপ শক্তিকে এক স্থান থেকে অন্য স্থানে বয়ে নিয়ে যায়, তাই এরা তাপের সুপরিবাহী।" },
+                { q: "ধাতু বিদ্যুতের সুপরিবাহী কেন?", o: ["কঠিনতার কারণে", "দ্যুতির কারণে", "মুক্ত ইলেকট্রনের উপস্থিতির কারণে", "গলনাঙ্কের কারণে"], a: 2, ex: "ধাতুর মধ্যে মুক্ত ইলেকট্রন থাকায় এরা সহজেই বিদ্যুৎ প্রবাহকে এক প্রান্ত থেকে অন্য প্রান্তে নিয়ে যেতে পারে। এই কারণেই ধাতু বিদ্যুতের সুপরিবাহী।" },
+                { q: "অধাতুর একটি সাধারণ ধর্ম কোনটি?", o: ["দ্যুতিময় এবং প্রসারণশীল", "তাপ ও বিদ্যুতের কুপরিবাহী এবং ভঙ্গুর", "কঠিন এবং সোনোরাস", "তরল এবং গ্যাসীয়"], a: 1, ex: "অধাতুগুলি সাধারণত দ্যুতিহীন, ভঙ্গুর প্রকৃতির এবং তাপ ও বিদ্যুতের কুপরিবাহী হয়। ব্যতিক্রম: গ্রাফাইট বিদ্যুৎ পরিবহন করে।" },
+                { q: "ধাতু অক্সিজেনের সাথে বিক্রিয়া করে কী ধরনের অক্সাইড তৈরি করে?", o: ["আম্লিক অক্সাইড", "ক্ষারীয় অক্সাইড", "প্রশমিত অক্সাইড", "উভধর্মী অক্সাইড"], a: 1, ex: "বেশিরভাগ ধাতু অক্সিজেনের সাথে বিক্রিয়া করে ধাতব অক্সাইড তৈরি করে, যা সাধারণত ক্ষারীয় প্রকৃতির হয়। কারণ, এই অক্সাইডগুলি জলের সাথে বিক্রিয়া করে ক্ষার উৎপন্ন করে।" },
+                { q: "নিচের কোনটি একটি উভধর্মী (Amphoteric) অক্সাইডের উদাহরণ?", o: ["Na₂O", "Al₂O₃", "CO₂", "SO₂"], a: 1, ex: "যেসব অক্সাইড অ্যাসিড এবং ক্ষার উভয়ের সাথেই বিক্রিয়া করে লবণ ও জল তৈরি করে, তাদের উভধর্মী অক্সাইড বলে। অ্যালুমিনিয়াম অক্সাইড (Al₂O₃) এবং জিঙ্ক অক্সাইড (ZnO) এর উদাহরণ।" },
+                { q: "সক্রিয়তা শ্রেণীর (Reactivity Series) শীর্ষে কোন ধাতুটি রয়েছে?", o: ["সোনা", "পটাশিয়াম", "তামা", "লোহা"], a: 1, ex: "সক্রিয়তা শ্রেণীতে ধাতুগুলিকে তাদের বিক্রিয়ার ক্ষমতার অধঃক্রমে সাজানো হয়। পটাশিয়াম (K) সবচেয়ে বেশি সক্রিয় হওয়ায় এটি তালিকার শীর্ষে রয়েছে।" },
+                { q: "কোন ধাতু ঠান্ডা জলের সাথে তীব্রভাবে বিক্রিয়া করে?", o: ["তামা", "সোডিয়াম", "লোহা", "সোনা"], a: 1, ex: "সোডিয়াম (Na) এবং পটাশিয়াম (K) অত্যন্ত সক্রিয় ধাতু হওয়ায় এরা ঠান্ডা জলের সাথেও তীব্রভাবে বিক্রিয়া করে এবং হাইড্রোজেন গ্যাস উৎপন্ন করে।" },
+                { q: "ধাতু লঘু অ্যাসিডের সাথে বিক্রিয়া করে কী তৈরি করে?", o: ["লবণ এবং হাইড্রোজেন", "অক্সাইড এবং কার্বন", "ক্ষার এবং অক্সিজেন", "গ্যাস এবং জল"], a: 0, ex: "সক্রিয় ধাতুগুলি লঘু অ্যাসিডের সাথে বিক্রিয়া করে সংশ্লিষ্ট ধাতব লবণ এবং হাইড্রোজেন গ্যাস উৎপন্ন করে। যেমন, Fe + 2HCl → FeCl₂ + H₂।" },
+                { q: "কোন ধাতু কপার সালফেট দ্রবণ থেকে কপারকে প্রতিস্থাপন করতে পারে?", o: ["সোনা", "লোহা", "রূপা", "পারদ"], a: 1, ex: "সক্রিয়তা শ্রেণীতে লোহার অবস্থান কপারের উপরে, অর্থাৎ লোহা কপারের চেয়ে বেশি সক্রিয়। তাই লোহা কপার সালফেট দ্রবণ থেকে কপারকে প্রতিস্থাপন করতে পারে।" },
+                { q: "আকরিক (Ore) বলতে কী বোঝায়?", o: ["খনিজমল", "যে খনিজ থেকে লাভজনকভাবে ধাতু নিষ্কাশন করা যায়", "মুক্ত ধাতু", "অধাতব যৌগ"], a: 1, ex: "প্রকৃতিতে প্রাপ্ত যেসব খনিজ থেকে সহজে এবং লাভজনকভাবে ধাতু নিষ্কাশন করা সম্ভব, তাদের সেই ধাতুর আকরিক বলা হয়।" },
+                { q: "ধাতু নিষ্কাশনের জন্য নিচের কোন প্রক্রিয়াটি ব্যবহৃত হতে পারে?", o: ["তাপজারন (Calcination)", "ভস্মীকরণ (Roasting)", "তড়িৎবিশ্লেষণ", "সবকটি"], a: 3, ex: "ধাতুর সক্রিয়তার ওপর নির্ভর করে বিভিন্ন পদ্ধতি যেমন কার্বনেট আকরিকের জন্য তাপজারন, সালফাইড আকরিকের জন্য ভস্মীকরণ এবং খুব সক্রিয় ধাতুর জন্য তড়িৎবিশ্লেষণ ব্যবহার করা হয়।" },
+                { q: "কোন ধাতু নিষ্কাশনের জন্য তড়িৎবিশ্লেষণীয় বিজারণ পদ্ধতি ব্যবহার করা হয়?", o: ["সোনা", "অ্যালুমিনিয়াম", "লোহা", "তামা"], a: 1, ex: "অ্যালুমিনিয়ামের মতো অত্যন্ত সক্রিয় ধাতুগুলিকে কার্বন বিজারণ পদ্ধতিতে নিষ্কাশন করা যায় না। তাই এদের গলিত অক্সাইডের তড়িৎবিশ্লেষণ করা হয়।" },
+                { q: "ধাতুর ক্ষয় (Corrosion) বলতে কী বোঝায়?", o: ["ধাতুর গলন", "ধাতুর প্রসারণ", "পরিবেশের প্রভাবে ধাতুর ধীরে ধীরে নষ্ট হয়ে যাওয়া", "ধাতুর বিজারণ"], a: 2, ex: "বায়ু, জল বা অন্যান্য রাসায়নিক পদার্থের সংস্পর্শে এসে ধাতুর পৃষ্ঠতলের ধীরে ধীরে ক্ষয়ে যাওয়া বা নষ্ট হয়ে যাওয়ার প্রক্রিয়াকে ধাতুর ক্ষয় বলে। যেমন, লোহায় মরিচা পড়া।" },
+                { q: "লোহায় মরিচা পড়া প্রতিরোধের একটি উপায় কোনটি?", o: ["গ্যালভানাইজিং", "রঙ করা", "সংকর ধাতু তৈরি", "সবকটি"], a: 3, ex: "লোহার উপর জিঙ্কের প্রলেপ দেওয়া (গ্যালভানাইজিং), রঙ বা তেলের আস্তরণ দেওয়া এবং সংকর ধাতু (যেমন, স্টেইনলেস স্টিল) তৈরি করা—এই সব পদ্ধতিতেই মরিচা প্রতিরোধ করা যায়।" },
+                { q: "নিচের কোনটি একটি সংকর ধাতু (Alloy)?", o: ["পিতল", "লোহা", "তামা", "জিঙ্ক"], a: 0, ex: "সংকর ধাতু হলো দুই বা ততোধিক ধাতুর মিশ্রণ। পিতল হলো তামা (Cu) এবং জিঙ্ক (Zn) ধাতুর একটি সংকর ধাতু।" },
+                { q: "আয়নীয় যৌগগুলির গলনাঙ্ক সাধারণত উচ্চ হয় কেন?", o: ["শক্তিশালী আন্তঃ-আয়নীয় আকর্ষণের কারণে", "নমনীয়তার কারণে", "দ্যুতির কারণে", "প্রসারণশীলতার কারণে"], a: 0, ex: "আয়নীয় যৌগগুলিতে পজিটিভ ও নেগেটিভ আয়নগুলি একটি শক্তিশালী স্থির-তড়িৎ আকর্ষণ বল দ্বারা আবদ্ধ থাকে। এই শক্তিশালী বন্ধন ভাঙতে প্রচুর তাপশক্তির প্রয়োজন হয়, তাই এদের গলনাঙ্ক ও স্ফুটনাঙ্ক খুব বেশি হয়।" },
+                { q: "ধাতুর প্রসারণশীলতা (Ductility) ধর্মটি কী?", o: ["পিটিয়ে পাতে পরিণত করা", "টেনে তারে পরিণত করা", "গরম করে গলানো", "শব্দ তৈরি করা"], a: 1, ex: "যে ধর্মের জন্য ধাতুকে বল প্রয়োগ করে সরু তারে পরিণত করা যায়, তাকে প্রসারণশীলতা বলে। সোনা সবচেয়ে বেশি প্রসারণশীল।" },
+                { q: "নিচের কোনটি একটি অধাতু?", o: ["লোহা", "কার্বন", "তামা", "অ্যালুমিনিয়াম"], a: 1, ex: "কার্বন একটি অধাতু, যা বিভিন্ন রূপে (যেমন, হীরে, গ্রাফাইট) পাওয়া যায়। বাকিগুলো ধাতু।" },
+                { q: "ধাতব অক্সাইডের প্রকৃতি কী?", o: ["আম্লিক", "ক্ষারীয়", "প্রশমিত", "উভধর্মী"], a: 1, ex: "ধাতব অক্সাইডগুলি সাধারণত ক্ষারীয় হয় কারণ এরা জলের সাথে বিক্রিয়া করে ক্ষার (Base) তৈরি করে। যেমন, Na₂O + H₂O → 2NaOH।" },
+                { q: "সক্রিয়তা শ্রেণীর সবচেয়ে নীচে কোন ধাতুটি রয়েছে?", o: ["পটাশিয়াম", "সোনা", "ম্যাগনেসিয়াম", "জিঙ্ক"], a: 1, ex: "সোনা (Au), রূপা (Ag) এবং প্ল্যাটিনামের মতো ধাতুগুলি খুব কম সক্রিয় হওয়ায় এরা সক্রিয়তা শ্রেণীর একেবারে নীচে অবস্থান করে।" },
+                { q: "কোন ধাতু শুধুমাত্র বাষ্প বা স্টিমের সাথে বিক্রিয়া করে, ঠান্ডা বা গরম জলের সাথে নয়?", o: ["সোনা", "লোহা", "সোডিয়াম", "ক্যালসিয়াম"], a: 1, ex: "লোহা, অ্যালুমিনিয়াম, জিঙ্কের মতো মাঝারি সক্রিয় ধাতুগুলি ঠান্ডা বা গরম জলের সাথে বিক্রিয়া করে না, কিন্তু উত্তপ্ত বাষ্পের সাথে বিক্রিয়া করে অক্সাইড ও হাইড্রোজেন গ্যাস তৈরি করে।" },
+                { q: "রেললাইন জোড়া লাগানোর জন্য ব্যবহৃত থার্মিট বিক্রিয়ায় কোন ধাতু ব্যবহার করা হয়?", o: ["জিঙ্ক", "অ্যালুমিনিয়াম", "ম্যাগনেসিয়াম", "লোহা"], a: 1, ex: "থার্মিট বিক্রিয়ায় আয়রন (III) অক্সাইডের সাথে অ্যালুমিনিয়াম গুঁড়ো ব্যবহার করা হয়। অ্যালুমিনিয়াম আয়রনকে প্রতিস্থাপিত করে এবং প্রচুর তাপ উৎপন্ন হয়, যা লোহাকে গলিয়ে দেয়।" },
+                { q: "ধাতু শোধন করার জন্য সর্বাধিক ব্যবহৃত পদ্ধতি কোনটি?", o: ["তড়িৎশোধন", "তাপজারন", "ভস্মীকরণ", "গ্যালভানাইজিং"], a: 0, ex: "তড়িৎশোধন (Electrolytic refining) হলো তামা, জিঙ্ক, টিন, সোনা ইত্যাদির মতো অনেক ধাতু থেকে অশুদ্ধি দূর করে প্রায় বিশুদ্ধ ধাতু পাওয়ার একটি বহুল ব্যবহৃত পদ্ধতি।" },
+                { q: "লোহায় মরিচা পড়ার জন্য কোন দুটি উপাদান অপরিহার্য?", o: ["শুধুমাত্র জল", "শুধুমাত্র অক্সিজেন", "অক্সিজেন এবং জলীয় বাষ্প উভয়ই", "শুধুমাত্র তাপ"], a: 2, ex: "লোহার উপর মরিচা পড়ার জন্য অক্সিজেন (বায়ু থেকে) এবং জল (বা জলীয় বাষ্প) - এই দুটি উপাদানের উপস্থিতি একান্ত প্রয়োজন।" },
+                { q: "স্টেইনলেস স্টিল কোন কোন ধাতুর সংকর?", o: ["লোহা, তামা ও জিঙ্ক", "লোহা, নিকেল ও ক্রোমিয়াম", "তামা, টিন ও লোহা", "অ্যালুমিনিয়াম, তামা ও লোহা"], a: 1, ex: "স্টেইনলেস স্টিল হলো লোহার একটি সংকর ধাতু, যেখানে লোহার সাথে নিকেল এবং ক্রোমিয়াম মেশানো হয়। ক্রোমিয়াম একে মরিচারোধী করে তোলে।" },
+                { q: "গলিত অবস্থায় আয়নীয় যৌগ বিদ্যুৎ পরিবহন করে কেন?", o: ["মুক্ত ইলেকট্রনের কারণে", "আয়নগুলি চলাচল করতে পারে বলে", "অণুগুলি ভেঙে যায় বলে", "উচ্চ তাপমাত্রার কারণে"], a: 1, ex: "কঠিন অবস্থায় আয়নীয় যৌগের আয়নগুলি নির্দিষ্ট স্থানে আবদ্ধ থাকে। কিন্তু গলিত বা দ্রবীভূত অবস্থায় এই আয়নগুলি চলাচল করতে পারে এবং তড়িৎ পরিবহন করে।" }
+            ];
+
+            const mcqContainer = document.getElementById('mcq-container');
+            const mcqSetSelector = document.getElementById('mcqSetSelector');
+            const scoreTracker = document.getElementById('score-tracker');
+            
+            let score = 0;
+            let totalQuestionsInSet = 0;
+
+            function generateMCQs(setNumber) {
+                mcqContainer.innerHTML = '';
+                score = 0;
+                
+                const questionsPerSet = 10;
+                const start = (setNumber - 1) * questionsPerSet;
+                const end = Math.min(start + questionsPerSet, mcqData.length);
+                const questionSet = mcqData.slice(start, end);
+
+                totalQuestionsInSet = questionSet.length;
+                updateScoreDisplay();
+
+                questionSet.forEach((item, index) => {
+                    const globalIndex = start + index;
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'mcq-question';
+                    questionDiv.id = `q-${globalIndex}`;
+                    
+                    let optionsHTML = item.o.map((option, i) => 
+                        `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                    ).join('');
+                    
+                    questionDiv.innerHTML = `
+                        <h4>প্রশ্ন ${globalIndex + 1}: ${item.q}</h4>
+                        <div class="mcq-options">${optionsHTML}</div>
+                        <div class="mcq-explanation"><strong>ব্যাখ্যা:</strong> ${item.ex}</div>
+                    `;
+                    mcqContainer.appendChild(questionDiv);
+                });
+                setupOptionListeners();
+                setupIntersectionObserver();
+            }
+            
+            function updateScoreDisplay() {
+                scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+            }
+
+            function handleOptionClick(e) {
+                const selectedOption = e.target.closest('.mcq-option');
+                if (!selectedOption) return;
+                const questionDiv = selectedOption.closest('.mcq-question');
+                if (questionDiv.classList.contains('answered')) return;
+                questionDiv.classList.add('answered');
+                const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+                const selectedIndex = parseInt(selectedOption.dataset.index);
+                const correctIndex = mcqData[globalIndex].a;
+                if (selectedIndex === correctIndex) {
+                    selectedOption.classList.add('correct');
+                    correctSound.play().catch(e => {});
+                    score++;
+                    updateScoreDisplay();
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    wrongSound.play().catch(e => {});
+                    questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+                }
+                questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+            }
+
+            function setupOptionListeners() {
+                mcqContainer.removeEventListener('click', handleOptionClick);
+                mcqContainer.addEventListener('click', handleOptionClick);
+            }
+            
+            mcqSetSelector.addEventListener('change', (e) => {
+                generateMCQs(parseInt(e.target.value, 10));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                const activeQuestion = document.querySelector('.mcq-question.active-question');
+                if (!activeQuestion) return;
+                
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const nextQuestion = activeQuestion.nextElementSibling;
+                    if (nextQuestion) {
+                        nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                } else if (['1', '2', '3', '4'].includes(e.key) && !activeQuestion.classList.contains('answered')) {
+                    e.preventDefault();
+                    const optionIndex = parseInt(e.key) - 1;
+                    const optionToClick = activeQuestion.querySelector(`.mcq-option[data-index="${optionIndex}"]`);
+                    if (optionToClick) {
+                        optionToClick.click();
+                    }
+                }
+            });
+
+            function setupIntersectionObserver() {
+                const questions = document.querySelectorAll('.mcq-question');
+                if (questions.length === 0) return;
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const prevActive = document.querySelector('.mcq-question.active-question');
+                            if (prevActive) prevActive.classList.remove('active-question');
+                            entry.target.classList.add('active-question');
+                        }
+                    });
+                }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+                questions.forEach(q => observer.observe(q));
+            }
+            
+            generateMCQs(1);
+        });
+    </script>
+</body>
+</html>

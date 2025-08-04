@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 04 - MCQ Practice (কার্বনের জগৎ)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); --correct-bg: #2ecc71; --incorrect-bg: #e74c3c; }
+        [data-theme="forest"] { --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; }
+        [data-theme="ocean"] { --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; }
+        [data-theme="sunset"] { --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; }
+        .dark-mode { --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .nav-button { display: inline-block; padding: 12px 25px; border: 1px solid var(--nav-button-border); border-radius: 8px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 600; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; color:white; }
+        .navigation { max-width: 900px; margin: 40px auto 0; padding-top: 20px; border-top: 2px solid var(--nav-button-border); display: flex; justify-content: space-between; align-items: center; width: 100%;}
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .theme-buttons button, .mcq-controls, .dark-mode-toggle { flex-shrink: 0; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question { margin-bottom: 40px; padding: 20px; border-radius: 10px; border: 2px solid transparent; transition: box-shadow 0.3s, border-color 0.3s; }
+        .mcq-question.active-question { border-color: var(--accent-color); box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5); }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://cdn-icons-png.flaticon.com/512/2942/2942839.png" alt="Carbon Atom Logo" class="logo">
+        <h1>কার্বন এবং এর যৌগসমূহ</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন ১-১০)</option>
+                <option value="2">Set 2 (প্রশ্ন ১১-২০)</option>
+                <option value="3">Set 3 (প্রশ্ন ২১-৩০)</option>
+            </select>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 04 - বিগত বছরের প্রশ্নাবলী (অধ্যায় ৪)</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="class3.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+        <a href="class5.html" class="nav-button">পরবর্তী</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2024 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const correctSound = new Audio('correct.mp3');
+            const wrongSound = new Audio('wrong.mp3');
+            
+            // --- THEME, MODE, & SCROLL BUTTON LOGIC (Unchanged) ---
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) {
+                if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+                else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+                localStorage.setItem('selected_mode', mode);
+            }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+                scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+                scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            // --- INTERACTIVE MCQ LOGIC ---
+            const mcqData = [
+                { q: "কার্বন যৌগগুলির গলনাঙ্ক এবং স্ফুটনাঙ্ক সাধারণত কম হয় কেন?", o: ["আয়নীয় বন্ধনের কারণে", "সমযোজী বন্ধনের দুর্বল আন্তঃআণবিক বলের কারণে", "উচ্চ আণবিক ভরের কারণে", "হাইড্রোজেন বন্ধনের কারণে"], a: 1, ex: "কার্বন যৌগগুলি সমযোজী বন্ধন গঠন করে। এই যৌগগুলির অণুগুলির মধ্যে আকর্ষণ বল (আন্তঃআণবিক বল) খুব দুর্বল হয়, তাই এদের ভাঙতে কম শক্তি লাগে। ফলে গলনাঙ্ক ও স্ফুটনাঙ্ক কম হয়।" },
+                { q: "কার্বনের যোজ্যতা (valency) কত?", o: ["2", "3", "4", "1"], a: 2, ex: "কার্বনের পারমাণবিক সংখ্যা 6 এবং এর ইলেকট্রন বিন্যাস 2, 4। বাইরের কক্ষে চারটি ইলেকট্রন থাকায় এর যোজ্যতা 4। একে চতুর্যোজ্যতা বা Tetravalency বলে।" },
+                { q: "ক্যাটিনেশন (Catenation) ধর্মটি কী?", o: ["কার্বনের অক্সিজেন যোগ করার ক্ষমতা", "কার্বনের অন্য কার্বন পরমাণুর সাথে শৃঙ্খল গঠনের ক্ষমতা", "কার্বনের হাইড্রোজেন যোগ করার ক্ষমতা", "কার্বনের দহনের ক্ষমতা"], a: 1, ex: "ক্যাটিনেশন হলো কার্বন পরমাণুর একটি বিশেষ ধর্ম, যার ফলে কার্বন পরমাণুগুলি друг с другом যুক্ত হয়ে লম্বা শৃঙ্খল, শাখাযুক্ত শৃঙ্খল বা বলয় গঠন করতে পারে। এই ধর্মের জন্যই লক্ষ লক্ষ জৈব যৌগ তৈরি সম্ভব।" },
+                { q: "নিচের কোনটি সম্পৃক্ত হাইড্রোকার্বন?", o: ["ইথিন", "মিথেন", "ইথাইন", "প্রোপিন"], a: 1, ex: "সম্পৃক্ত হাইড্রোকার্বনে কার্বন-কার্বন পরমাণুর মধ্যে কেবল একক বন্ধন থাকে। মিথেন (CH₄) একটি অ্যালকেন এবং এতে কোনো কার্বন-কার্বন বন্ধন নেই, তাই এটি সম্পৃক্ত। বাকিগুলো অসম্পৃক্ত।" },
+                { q: "নিচের কোনটি অসম্পৃক্ত হাইড্রোকার্বন?", o: ["CH₄ (মিথেন)", "C₂H₆ (ইথেন)", "C₂H₄ (ইথিন)", "C₃H₈ (প্রোপেন)"], a: 2, ex: "অসম্পৃক্ত হাইড্রোকার্বনে কার্বন-কার্বন পরমাণুর মধ্যে কমপক্ষে একটি দ্বিবন্ধন বা ত্রিবন্ধন থাকে। ইথিনে (C₂H₄) একটি দ্বিবন্ধন আছে, তাই এটি অসম্পৃক্ত।" },
+                { q: "সমগনীয় শ্রেণীর (Homologous Series) যৌগগুলির সাধারণ বৈশিষ্ট্য কী?", o: ["একই কার্যকরী মূলক থাকে", "একই আণবিক ভর থাকে", "একই গলনাঙ্ক থাকে", "একই রঙ থাকে"], a: 0, ex: "সমগনীয় শ্রেণী হলো এমন একটি যৌগ শ্রেণী যার প্রত্যেকটি সদস্যের মধ্যে একই কার্যকরী মূলক থাকে এবং তাদের রাসায়নিক ধর্ম প্রায় একই রকম হয়।" },
+                { q: "অ্যালকেনের সাধারণ সংকেত কী?", o: ["CₙH₂ₙ", "CₙH₂ₙ₊₂", "CₙH₂ₙ₋₂", "CₙH₂ₙ₊₁"], a: 1, ex: "অ্যালকেন হলো সম্পৃক্ত হাইড্রোকার্বন, যাদের সাধারণ সংকেত CₙH₂ₙ₊₂, যেখানে n ≥ 1। যেমন, মিথেন (n=1, CH₄), ইথেন (n=2, C₂H₆)।" },
+                { q: "নিচের কোনটি একটি কার্যকরী মূলক (Functional Group)?", o: ["—OH", "—CH₃", "—H", "—C"], a: 0, ex: "কার্যকরী মূলক হলো কোনো পরমাণু বা পরমাণু গোষ্ঠী যা জৈব যৌগের রাসায়নিক ধর্ম নির্ধারণ করে। —OH হলো অ্যালকোহল কার্যকরী মূলক।" },
+                { q: "কার্বন যৌগগুলির সম্পূর্ণ দহনে কী উৎপন্ন হয়?", o: ["CO₂ এবং H₂O", "H₂ এবং আলো", "N₂ এবং জল", "O₂ এবং গ্যাস"], a: 0, ex: "কার্বন যৌগগুলি পর্যাপ্ত অক্সিজেনের উপস্থিতিতে পুড়ে কার্বন ডাইঅক্সাইড (CO₂), জল (H₂O) এবং প্রচুর তাপ ও আলো শক্তি উৎপন্ন করে।" },
+                { q: "অসম্পূর্ণ দহনের ফলে কোন পদার্থটি তৈরি হয়?", o: ["CO₂", "কালি (কার্বন)", "H₂O", "O₂"], a: 1, ex: "অক্সিজেনের সরবরাহ অপর্যাপ্ত হলে কার্বন যৌগগুলির অসম্পূর্ণ দহন ঘটে, যার ফলে বিষাক্ত কার্বন মনোক্সাইড (CO) এবং কালি বা ভুসোকালি (কার্বন) তৈরি হয়।" },
+                { q: "নিচের কোনটি একটি জারক পদার্থের (Oxidising Agent) উদাহরণ?", o: ["KMnO₄", "NaOH", "HCl", "C₂H₅OH"], a: 0, ex: "জারক পদার্থ অন্য পদার্থকে জারিত করে। ক্ষারীয় পটাশিয়াম পারম্যাঙ্গানেট (KMnO₄) একটি শক্তিশালী জারক পদার্থ, যা অ্যালকোহলকে জারিত করে কার্বক্সিলিক অ্যাসিডে পরিণত করে।" },
+                { q: "উদ্ভিজ্জ তেল থেকে বনস্পতি ঘি তৈরির প্রক্রিয়াকে কী বলে?", o: ["হাইড্রোজেনেশন", "দহন", "জারণ", "প্রতিস্থাপন"], a: 0, ex: "হাইড্রোজেনেশন একটি সংযোজন বিক্রিয়া, যেখানে অনুঘটকের উপস্থিতিতে অসম্পৃক্ত উদ্ভিজ্জ তেল হাইড্রোজেনের সাথে যুক্ত হয়ে সম্পৃক্ত বনস্পতি ঘি বা ডালডাতে পরিণত হয়।" },
+                { q: "মিথেনের সাথে ক্লোরিনের বিক্রিয়াটি কোন ধরনের?", o: ["সংযোজন", "দহন", "জারণ", "প্রতিস্থাপন"], a: 3, ex: "সূর্যালোকের উপস্থিতিতে মিথেন ক্লোরিনের সাথে প্রতিস্থাপন বিক্রিয়া করে, যেখানে একটি করে হাইড্রোজেন পরমাণু ক্লোরিন পরমাণু দ্বারা প্রতিস্থাপিত হয়। যেমন, CH₄ + Cl₂ → CH₃Cl + HCl।" },
+                { q: "ইথানলের সাধারণ নাম কী?", o: ["অ্যালকোহল", "অ্যাসিটিক অ্যাসিড", "ইথিন", "মিথেন"], a: 0, ex: "ইথানল (C₂H₅OH) অ্যালকোহল পরিবারের একটি গুরুত্বপূর্ণ সদস্য এবং সাধারণভাবে একে 'অ্যালকোহল' বা 'স্পিরিট' বলা হয়।" },
+                { q: "ভিনিগার মূলত কোন অ্যাসিডের লঘু জলীয় দ্রবণ?", o: ["ইথানোয়িক অ্যাসিড", "মিথানোয়িক অ্যাসিড", "সাইট্রিক অ্যাসিড", "সালফিউরিক অ্যাসিড"], a: 0, ex: "ইথানোয়িক অ্যাসিডের (CH₃COOH) ৫-৮% জলীয় দ্রবণকে ভিনিগার বলা হয়। এর সাধারণ নাম অ্যাসিটিক অ্যাসিড।" },
+                { q: "এস্টারিফিকেশন বিক্রিয়ায় কী তৈরি হয়?", o: ["এস্টার", "অ্যালকোহল", "অ্যাসিড", "হাইড্রোজেন"], a: 0, ex: "অ্যাসিড অনুঘটকের উপস্থিতিতে একটি কার্বক্সিলিক অ্যাসিড ও একটি অ্যালকোহলের বিক্রিয়ায় মিষ্টি গন্ধযুক্ত এস্টার এবং জল উৎপন্ন হয়।" },
+                { q: "স্যাপোনিফিকেশন (Saponification) বিক্রিয়া কী তৈরিতে ব্যবহৃত হয়?", o: ["সাবান", "তেল", "অ্যাসিড", "গ্যাস"], a: 0, ex: "ক্ষারের উপস্থিতিতে এস্টারের আর্দ্রবিশ্লেষণের 통해 অ্যালকোহল এবং কার্বক্সিলিক অ্যাসিডের লবণ (সাবান) তৈরি হয়। এই প্রক্রিয়াকে স্যাপোনিফিকেশন বলে।" },
+                { q: "খর জলে (Hard water) সাবান ভালোভাবে কাজ করে না কেন?", o: ["অদ্রবণীয় গাদ (scum) তৈরি করে", "বেশি ফেনা তৈরি করে", "দ্রবীভূত হয় না", "রঙ পরিবর্তন করে"], a: 0, ex: "খর জলে উপস্থিত ক্যালসিয়াম ও ম্যাগনেসিয়াম লবণের সাথে সাবান বিক্রিয়া করে একটি অদ্রবণীয় সাদা অধঃক্ষেপ বা গাদ (scum) তৈরি করে, যা পরিষ্কারের কাজে বাধা দেয়।" },
+                { q: "ডিটারজেন্ট খর জলেও কার্যকর কেন?", o: ["এটি গাদ তৈরি করে না", "এটি ফেনা তৈরি করে না", "এটি অদ্রবণীয়", "এটি বিষাক্ত"], a: 0, ex: "ডিটারজেন্টের অণুগুলি খর জলে উপস্থিত ক্যালসিয়াম ও ম্যাগনেসিয়াম আয়নের সাথে বিক্রিয়া করে কোনো অদ্রবণীয় অধঃক্ষেপ বা গাদ তৈরি করে না, তাই এটি খর জলেও সমানভাবে কার্যকর।" },
+                { q: "সাবানের পরিষ্কারক ক্রিয়ার জন্য দায়ী গঠনটির নাম কী?", o: ["মাইসেল (Micelle)", "এস্টার", "অ্যালকেন", "জাইগোট"], a: 0, ex: "সাবান জলে গুলে তেল বা ময়লাকে কেন্দ্র করে গোলাকার একটি গঠন তৈরি করে, যার বাইরের অংশ জলপ্রেমী এবং ভেতরের অংশ জলবিদ্বেষী। এই গঠনটিকে মাইসেল বলে, যা ময়লা পরিষ্কার করে।" },
+                { q: "কার্বনের কোন রূপভেদটি সবচেয়ে কঠিন পদার্থ?", o: ["হীরা", "গ্রাফাইট", "ফুলারিন", "কয়লা"], a: 0, ex: "হীরায় প্রতিটি কার্বন পরমাণু অন্য চারটি কার্বন পরমাণুর সাথে শক্তিশালী সমযোজী বন্ধনে আবদ্ধ থেকে একটি ত্রিমাত্রিক জালক গঠন করে, তাই এটি পৃথিবীর সবচেয়ে কঠিন প্রাকৃতিক পদার্থ।" },
+                { q: "ফুটবলের মতো দেখতে কার্বনের রূপভেদ কোনটি?", o: ["C-60 (ফুলারিন)", "মিথেন", "গ্রাফাইট", "হীরা"], a: 0, ex: "ফুলারিন হলো কার্বনের একটি রূপভেদ যেখানে কার্বন পরমাণুগুলি একটি বদ্ধ খাঁচার মতো গঠন তৈরি করে। C-60 অণুটি দেখতে একটি ফুটবলের মতো।" },
+                { q: "অ্যালকিনের সাধারণ সংকেত কী?", o: ["CₙH₂ₙ", "CₙH₂ₙ₊₂", "CₙH₂ₙ₋₂", "CₙH₂ₙ₊₁"], a: 0, ex: "অ্যালকিন হলো অসম্পৃক্ত হাইড্রোকার্বন, যেখানে কমপক্ষে একটি কার্বন-কার্বন দ্বিবন্ধন থাকে। এদের সাধারণ সংকেত CₙH₂ₙ, যেখানে n ≥ 2।" },
+                { q: "একই আণবিক সংকেত কিন্তু ভিন্ন গঠনযুক্ত যৌগকে কী বলে?", o: ["সমাবয়ব (Isomer)", "আইসোটোপ", "আইসোটোন", "সমগনীয় শ্রেণী"], a: 0, ex: "যেসব যৌগের আণবিক সংকেত একই কিন্তু গঠন এবং ধর্ম ভিন্ন, তাদের পরস্পরের সমাবয়ব বা আইসোমার বলা হয়। যেমন, বিউটেনের দুটি সমাবয়ব আছে।" },
+                { q: "ইথানল সোডিয়ামের সাথে বিক্রিয়া করে কোন গ্যাস উৎপন্ন করে?", o: ["হাইড্রোজেন", "কার্বন ডাই অক্সাইড", "অক্সিজেন", "নাইট্রোজেন"], a: 0, ex: "সক্রিয় ধাতু সোডিয়াম ইথানলের সাথে বিক্রিয়া করে সোডিয়াম ইথক্সাইড এবং হাইড্রোজেন গ্যাস উৎপন্ন করে।" },
+                { q: "ইথানলকে গাঢ় সালফিউরিক অ্যাসিড সহ উত্তপ্ত করলে কী উৎপন্ন হয়?", o: ["ইথিন", "মিথেন", "প্রোপেন", "ইথেন"], a: 0, ex: "গাঢ় সালফিউরিক অ্যাসিড একটি নিরুদক পদার্থ। এটি ইথানল থেকে এক অণু জল বের করে নেয় এবং ইথানলকে অসম্পৃক্ত হাইড্রোকার্বন ইথিনে পরিণত করে।" },
+                { q: "ফলের মতো মিষ্টি গন্ধযুক্ত যৌগ কোনটি?", o: ["এস্টার", "অ্যালকোহল", "অ্যাসিড", "অ্যালডিহাইড"], a: 0, ex: "এস্টার যৌগগুলির একটি বিশেষ বৈশিষ্ট্য হলো এদের মিষ্টি ফলের মতো গন্ধ থাকে। এই কারণে এগুলি সুগন্ধি এবং ফ্লেভার তৈরিতে ব্যবহৃত হয়।" },
+                { q: "সাবান মূলত কী?", o: ["দীর্ঘ-শৃঙ্খল কার্বক্সিলিক অ্যাসিডের লবণ", "অ্যালকোহলের লবণ", "সালফোনিক অ্যাসিডের লবণ", "অজৈব লবণ"], a: 0, ex: "সাবান হলো দীর্ঘ-শৃঙ্খলযুক্ত ফ্যাটি অ্যাসিড (কার্বক্সিলিক অ্যাসিড) এবং সোডিয়াম বা পটাশিয়াম হাইড্রক্সাইডের মতো ক্ষারের বিক্রিয়ায় উৎপন্ন লবণ।" },
+                { q: "সাবানের অণুর কোন অংশটি জলকে আকর্ষণ করে?", o: ["হাইড্রোফিলিক মাথা", "হাইড্রোফোবিক লেজ", "কার্বন শৃঙ্খল", "সম্পূর্ণ অণুটি"], a: 0, ex: "সাবান অণুর দুটি অংশ থাকে—আয়নীয় মাথা (COO⁻Na⁺) যা জলপ্রেমী বা হাইড্রোফিলিক, এবং দীর্ঘ হাইড্রোকার্বন লেজ যা জলবিদ্বেষী বা হাইড্রোফোবিক।" },
+                { q: "নিচের কোনটি ডিটারজেন্টের উদাহরণ?", o: ["সোডিয়াম স্টিয়ারেট", "সোডিয়াম লরাইল সালফেট", "পটাসিয়াম পামিটেট", "সোডিয়াম অ্যাসিটেট"], a: 1, ex: "ডিটারজেন্টগুলি সাধারণত দীর্ঘ-শৃঙ্খল সালফোনিক অ্যাসিড বা অ্যালকাইল বেনজিন সালফোনেটের লবণ। শ্যাম্পু এবং পরিষ্কারকগুলিতে সোডিয়াম লরাইল সালফেটের মতো ডিটারজেন্ট ব্যবহৃত হয়।" }
+            ];
+
+            const mcqContainer = document.getElementById('mcq-container');
+            const mcqSetSelector = document.getElementById('mcqSetSelector');
+            const scoreTracker = document.getElementById('score-tracker');
+            
+            let score = 0;
+            let totalQuestionsInSet = 0;
+
+            function generateMCQs(setNumber) {
+                mcqContainer.innerHTML = '';
+                score = 0;
+                
+                const questionsPerSet = 10;
+                const start = (setNumber - 1) * questionsPerSet;
+                const end = Math.min(start + questionsPerSet, mcqData.length);
+                const questionSet = mcqData.slice(start, end);
+
+                totalQuestionsInSet = questionSet.length;
+                updateScoreDisplay();
+
+                questionSet.forEach((item, index) => {
+                    const globalIndex = start + index;
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'mcq-question';
+                    questionDiv.id = `q-${globalIndex}`;
+                    
+                    let optionsHTML = item.o.map((option, i) => 
+                        `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                    ).join('');
+                    
+                    questionDiv.innerHTML = `
+                        <h4>প্রশ্ন ${globalIndex + 1}: ${item.q}</h4>
+                        <div class="mcq-options">${optionsHTML}</div>
+                        <div class="mcq-explanation"><strong>ব্যাখ্যা:</strong> ${item.ex}</div>
+                    `;
+                    mcqContainer.appendChild(questionDiv);
+                });
+                setupOptionListeners();
+                setupIntersectionObserver();
+            }
+            
+            function updateScoreDisplay() {
+                scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+            }
+
+            function handleOptionClick(e) {
+                const selectedOption = e.target.closest('.mcq-option');
+                if (!selectedOption) return;
+                const questionDiv = selectedOption.closest('.mcq-question');
+                if (questionDiv.classList.contains('answered')) return;
+                questionDiv.classList.add('answered');
+                const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+                const selectedIndex = parseInt(selectedOption.dataset.index);
+                const correctIndex = mcqData[globalIndex].a;
+                if (selectedIndex === correctIndex) {
+                    selectedOption.classList.add('correct');
+                    correctSound.play().catch(e => {});
+                    score++;
+                    updateScoreDisplay();
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    wrongSound.play().catch(e => {});
+                    questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+                }
+                questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+            }
+
+            function setupOptionListeners() {
+                mcqContainer.removeEventListener('click', handleOptionClick);
+                mcqContainer.addEventListener('click', handleOptionClick);
+            }
+            
+            mcqSetSelector.addEventListener('change', (e) => {
+                generateMCQs(parseInt(e.target.value, 10));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                const activeQuestion = document.querySelector('.mcq-question.active-question');
+                if (!activeQuestion) return;
+                
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const nextQuestion = activeQuestion.nextElementSibling;
+                    if (nextQuestion) {
+                        nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                } else if (['1', '2', '3', '4'].includes(e.key) && !activeQuestion.classList.contains('answered')) {
+                    e.preventDefault();
+                    const optionIndex = parseInt(e.key) - 1;
+                    const optionToClick = activeQuestion.querySelector(`.mcq-option[data-index="${optionIndex}"]`);
+                    if (optionToClick) {
+                        optionToClick.click();
+                    }
+                }
+            });
+
+            function setupIntersectionObserver() {
+                const questions = document.querySelectorAll('.mcq-question');
+                if (questions.length === 0) return;
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const prevActive = document.querySelector('.mcq-question.active-question');
+                            if (prevActive) prevActive.classList.remove('active-question');
+                            entry.target.classList.add('active-question');
+                        }
+                    });
+                }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+                questions.forEach(q => observer.observe(q));
+            }
+            
+            generateMCQs(1);
+        });
+    </script>
+</body>
+</html>
