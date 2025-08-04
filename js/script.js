@@ -1,4 +1,4 @@
-// Filename: js/script.js - Upgraded for Dynamic Quiz Count
+// Filename: js/script.js - Upgraded for Main Homepage and Chapter Pages
 
 document.addEventListener('DOMContentLoaded', () => {
     // Firebase Authentication Check
@@ -38,9 +38,17 @@ function initApp(user) {
     setupUserProfile(user);
     setupUIInteractions();
     
-    // --- Firebase থেকে অধ্যায়-ভিত্তিক ডেটা লোড ---
-    loadChapterLeaderboard(db, chapterKey); // অধ্যায়-ভিত্তিক লিডারবোর্ড
-    loadDashboardData(db, user.uid, chapterKey); // অধ্যায়-ভিত্তিক ড্যাশবোর্ড
+    // --- Firebase থেকে ডেটা লোড ---
+    // হোমপেজ এবং অধ্যায় পেজের জন্য আলাদাভাবে ফাংশন কল করা হচ্ছে
+    const isHomePage = (chapterKey === "NCERT_SCIENCE_CLASS_10");
+
+    if (isHomePage) {
+        loadMainLeaderboard(db); // হোমপেজের জন্য সামগ্রিক লিডারবোর্ড
+        loadDashboardData(db, user.uid, chapterKey, true); // হোমপেজের জন্য সামগ্রিক ড্যাশবোর্ড
+    } else {
+        loadChapterLeaderboard(db, chapterKey); // অধ্যায়-ভিত্তিক লিডারবোর্ড
+        loadDashboardData(db, user.uid, chapterKey, false); // অধ্যায়-ভিত্তিক ড্যাশবোর্ড
+    }
 }
 
 // ===============================================
@@ -94,18 +102,6 @@ function setupUIInteractions() {
             });
         });
     }
-
-    // Formula Modal
-    const modal = document.getElementById('formula-modal');
-    const openBtn = document.getElementById('formula-sheet-btn');
-    if (modal && openBtn) {
-        const closeBtn = modal.querySelector('.modal-close-btn');
-        openBtn.addEventListener('click', () => modal.classList.add('active'));
-        if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('active'));
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) modal.classList.remove('active');
-        });
-    }
     
     // Back to Top button
     const backToTop = document.getElementById('back-to-top');
@@ -124,6 +120,8 @@ function setupUIInteractions() {
 
             const mainRow = button.closest('.leaderboard-row');
             const detailsRow = mainRow.nextElementSibling;
+            if (!detailsRow || !detailsRow.classList.contains('details-row')) return;
+            
             const isVisible = detailsRow.style.display === 'table-row';
 
             // Close all other open details
@@ -150,6 +148,82 @@ function setupUIInteractions() {
 // ===============================================
 // --- Firebase Data Loading Functions ---
 // ===============================================
+
+/**
+ * Loads the main leaderboard with aggregated scores from all chapters.
+ * @param {firebase.firestore.Firestore} db
+ */
+function loadMainLeaderboard(db) {
+    const leaderboardBody = document.getElementById('leaderboard-body');
+    if (!leaderboardBody) return;
+
+    leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">লিডারবোর্ড লোড হচ্ছে...</td></tr>';
+
+    db.collection('users').get().then(snapshot => {
+        if (snapshot.empty) {
+            leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">কোনো স্কোর পাওয়া যায়নি।</td></tr>';
+            return;
+        }
+
+        let allUsersData = [];
+        snapshot.forEach(doc => {
+            const userData = doc.data();
+            let totalScore = 0;
+            let chapterDetails = '';
+
+            if (userData.chapters) {
+                for (const key in userData.chapters) {
+                    const chapter = userData.chapters[key];
+                    totalScore += chapter.totalScore || 0;
+                    if (chapter.totalScore > 0) {
+                        chapterDetails += `<li><span class="label">${key.replace(/_/g, ' ')}:</span> ${chapter.totalScore}</li>`;
+                    }
+                }
+            }
+            if (totalScore > 0) {
+                allUsersData.push({
+                    displayName: userData.displayName || 'Unknown User',
+                    totalScore: totalScore,
+                    details: chapterDetails || '<li>কোনো বিস্তারিত স্কোর নেই।</li>'
+                });
+            }
+        });
+
+        if (allUsersData.length === 0) {
+            leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">কোনো স্কোর পাওয়া যায়নি।</td></tr>';
+            return;
+        }
+
+        // Sort users by total score in descending order
+        allUsersData.sort((a, b) => b.totalScore - a.totalScore);
+
+        let leaderboardHTML = '';
+        allUsersData.slice(0, 10).forEach((user, index) => {
+            const rank = index + 1;
+            let icon = '';
+            if (rank === 1) icon = '<i class="fa-solid fa-trophy" style="color: #ffd700;"></i> ';
+            else if (rank === 2) icon = '<i class="fa-solid fa-medal" style="color: #c0c0c0;"></i> ';
+            else if (rank === 3) icon = '<i class="fa-solid fa-medal" style="color: #cd7f32;"></i> ';
+            
+            leaderboardHTML += `
+                <tr class="leaderboard-row">
+                    <td>${icon}${rank}</td>
+                    <td>${user.displayName}</td>
+                    <td><strong>${user.totalScore}</strong></td>
+                    <td><button class="toggle-details-btn" aria-label="বিস্তারিত দেখুন"><i class="fas fa-chevron-down"></i></button></td>
+                </tr>
+                <tr class="details-row" style="display: none;">
+                    <td colspan="4"><div class="details-content"><ul>${user.details}</ul></div></td>
+                </tr>
+            `;
+        });
+
+        leaderboardBody.innerHTML = leaderboardHTML;
+    }).catch(error => {
+        console.error("Error loading main leaderboard:", error);
+        leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">ত্রুটি: লিডারবোর্ড লোড করা যায়নি।</td></tr>';
+    });
+}
 
 /**
  * Loads chapter-specific leaderboard data.
@@ -223,36 +297,55 @@ function loadChapterLeaderboard(db, chapterKey) {
         });
 }
 
-
 /**
- * Loads all chapter-specific data for the user dashboard.
+ * Loads dashboard data. Can show aggregated or specific chapter data.
  * @param {firebase.firestore.Firestore} db
  * @param {string} userId - The current user's ID.
  * @param {string} chapterKey - The Firestore-safe key for the chapter.
+ * @param {boolean} isHomePage - Flag to indicate if it's the main homepage.
  */
-function loadDashboardData(db, userId, chapterKey) {
-    // *** IMPROVEMENT: Dynamically count quizzes from the HTML ***
-    // This makes the script reusable for any chapter without modification.
+function loadDashboardData(db, userId, chapterKey, isHomePage) {
     const quizLinks = document.querySelectorAll('#quiz-sets .link-container a');
-    const totalQuizzesInChapter = quizLinks.length;
+    const totalQuizzesOnPage = quizLinks.length;
 
     db.collection('users').doc(userId).get().then(doc => {
-        let chapterData = {};
-        if (doc.exists && doc.data().chapters && doc.data().chapters[chapterKey]) {
-            chapterData = doc.data().chapters[chapterKey];
+        if (!doc.exists || !doc.data().chapters) {
+            updateChapterProgress(0, totalQuizzesOnPage);
+            updatePieChart(0, 0);
+            updateUserAchievements({}, totalQuizzesOnPage);
+            loadDailyChallenge();
+            return;
         }
 
-        updateChapterProgress(chapterData.completedQuizzesCount || 0, totalQuizzesInChapter);
-        updatePieChart(chapterData.totalCorrect || 0, chapterData.totalWrong || 0);
-        updateUserAchievements(chapterData, totalQuizzesInChapter);
+        const allChaptersData = doc.data().chapters;
+        let completedQuizzes = 0, correctAnswers = 0, wrongAnswers = 0;
+
+        if (isHomePage) {
+            // Aggregate data from all chapters for the homepage
+            for (const key in allChaptersData) {
+                const chapter = allChaptersData[key];
+                completedQuizzes += chapter.completedQuizzesCount || 0;
+                correctAnswers += chapter.totalCorrect || 0;
+                wrongAnswers += chapter.totalWrong || 0;
+            }
+        } else {
+            // Get data for a specific chapter
+            const chapterData = allChaptersData[chapterKey] || {};
+            completedQuizzes = chapterData.completedQuizzesCount || 0;
+            correctAnswers = chapterData.totalCorrect || 0;
+            wrongAnswers = chapterData.totalWrong || 0;
+        }
+
+        updateChapterProgress(completedQuizzes, totalQuizzesOnPage);
+        updatePieChart(correctAnswers, wrongAnswers);
+        updateUserAchievements({ completedQuizzesCount: completedQuizzes }, totalQuizzesOnPage);
         loadDailyChallenge();
 
     }).catch(error => {
-        console.error("Error loading user dashboard data:", error);
-        // Fallback with correct total quiz count
-        updateChapterProgress(0, totalQuizzesInChapter);
+        console.error("Error loading dashboard data:", error);
+        updateChapterProgress(0, totalQuizzesOnPage);
         updatePieChart(0, 0);
-        updateUserAchievements({}, totalQuizzesInChapter);
+        updateUserAchievements({}, totalQuizzesOnPage);
         loadDailyChallenge();
     });
 }
@@ -266,7 +359,6 @@ function updateChapterProgress(completed, total) {
     const progressText = document.getElementById('chapter-progress-text');
     if (!progressBar || !progressText) return;
     
-    // Handle case where total is 0 to avoid division by zero
     const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
     
     progressBar.style.width = `${percentage}%`;
@@ -318,17 +410,16 @@ function updateUserAchievements(chapterData, totalQuizzes) {
     const achievementsContainer = document.getElementById('achievements-container');
     if (!achievementsContainer) return;
 
-    // Do not show achievements if there are no quizzes in the chapter
     if (totalQuizzes === 0) {
-        achievementsContainer.innerHTML = '<p>এই অধ্যায়ে কোনো অ্যাচিভমেন্ট নেই।</p>';
+        achievementsContainer.innerHTML = '<p>এই বিভাগে কোনো অ্যাচিভমেন্ট নেই।</p>';
         return;
     }
 
     const completedCount = chapterData.completedQuizzesCount || 0;
     const achievementConfig = [
-        { id: 'first_quiz', title: 'প্রথম পদক্ষেপ', icon: 'fa-shoe-prints', criteria: count => count >= 1, desc: "এই অধ্যায়ের প্রথম কুইজ সম্পন্ন করেছেন!" },
-        { id: 'quiz_master', title: 'কুইজ মাস্টার', icon: 'fa-brain', criteria: count => count >= Math.ceil(totalQuizzes / 2), desc: `এই অধ্যায়ের অর্ধেক (${Math.ceil(totalQuizzes / 2)}টি) কুইজ সম্পন্ন করেছেন!` },
-        { id: 'chapter_winner', title: 'অধ্যায় বিজয়ী', icon: 'fa-crown', criteria: count => count >= totalQuizzes, desc: "এই অধ্যায়ের সব কুইজ সম্পন্ন করেছেন!" }
+        { id: 'first_quiz', title: 'প্রথম পদক্ষেপ', icon: 'fa-shoe-prints', criteria: count => count >= 1, desc: "প্রথম কুইজ সম্পন্ন করেছেন!" },
+        { id: 'quiz_master', title: 'কুইজ মাস্টার', icon: 'fa-brain', criteria: count => count >= Math.ceil(totalQuizzes / 2), desc: `অর্ধেকের বেশি (${Math.ceil(totalQuizzes / 2)}টি) কুইজ সম্পন্ন করেছেন!` },
+        { id: 'chapter_winner', title: 'বিভাগ বিজয়ী', icon: 'fa-crown', criteria: count => count >= totalQuizzes, desc: "এই বিভাগের সব কুইজ সম্পন্ন করেছেন!" }
     ];
 
     achievementsContainer.innerHTML = '';
@@ -347,7 +438,7 @@ function loadDailyChallenge() {
     if (!challengeText) return;
     const challenges = [
         "আজকে কমপক্ষে ২টি কুইজ সেট সমাধান করো।",
-        "সূত্র তালিকাটি সম্পূর্ণ মুখস্থ করে ফেলো।",
+        "যেকোনো একটি অধ্যায়ের সূত্র তালিকাটি সম্পূর্ণ মুখস্থ করে ফেলো।",
         "যেকোনো একটি ক্লাস নোট সম্পূর্ণ রিভিশন দাও।",
         "একটি কঠিন প্রশ্নের ব্যাখ্যা ভালো করে বুঝে নাও।"
     ];
